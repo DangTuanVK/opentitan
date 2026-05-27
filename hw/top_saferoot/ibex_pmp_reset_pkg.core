@@ -1,0 +1,14 @@
+CAPI=2:
+name: "lowrisc:constants:top_saferoot_ibex_pmp_reset_pkg"
+description: "PMP reset settings for SafeRoot"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:ibex:ibex_pkg
+    files:
+      - rtl/ibex_pmp_reset_pkg.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets:
+      - files_rtl

@@ -1,0 +1,14 @@
+CAPI=2:
+name: lowrisc:saferoot_constants:top_pkg
+description: "SafeRoot top package constants"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:prim:mubi
+    files:
+      - rtl/autogen/top_saferoot_pkg.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets:
+      - files_rtl

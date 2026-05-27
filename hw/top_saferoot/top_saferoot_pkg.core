@@ -1,0 +1,11 @@
+CAPI=2:
+name: lowrisc:systems:top_saferoot_pkg
+description: "SafeRoot top-level package (alias)"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:saferoot_constants:top_pkg
+targets:
+  default:
+    filesets:
+      - files_rtl

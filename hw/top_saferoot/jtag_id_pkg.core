@@ -1,0 +1,12 @@
+CAPI=2:
+name: "lowrisc:constants:top_saferoot_jtag_id_pkg"
+description: "jtag id for top_saferoot"
+filesets:
+  files_rtl:
+    files:
+      - rtl/jtag_id_pkg.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets:
+      - files_rtl

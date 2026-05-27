@@ -1,0 +1,90 @@
+CAPI=2:
+# Copyright SafeRoot contributors.
+# Licensed under the Apache License, Version 2.0
+name: "lowrisc:systems:chip_saferoot_verilator:0.1"
+description: "SafeRoot toplevel for simulation with Verilator"
+filesets:
+  files_sim_verilator:
+    depend:
+      - lowrisc:systems:chip_saferoot_asic:0.1
+    files:
+      - dv/verilator/chip_saferoot_tb.sv: { file_type: systemVerilogSource }
+      - dv/verilator/sim_main.cpp: { file_type: cppSource }
+
+targets:
+  default: &default_target
+    filesets:
+      - files_sim_verilator
+    toplevel: chip_saferoot_tb
+
+  sim:
+    <<: *default_target
+    default_tool: verilator
+    tools:
+      verilator:
+        mode: cc
+        verilator_options:
+          - "--exe"
+          - "--trace"
+          - "-Wno-REDEFMACRO"
+          - "-Wno-MODDUP"
+          - "-Wno-UNOPTFLAT"
+          - "-Wno-WIDTH"
+          - "-Wno-UNUSED"
+          - "-Wno-WIDTHTRUNC"
+          - "-Wno-WIDTHEXPAND"
+          - "-Wno-IMPLICIT"
+          - "-Wno-CASEINCOMPLETE"
+          - "-Wno-MULTIDRIVEN"
+          - "-Wno-DECLFILENAME"
+          - "-Wno-ENUMVALUE"
+          - "-Wno-VARHIDDEN"
+          - "-Wno-GENUNNAMED"
+          - "-Wno-ASCRANGE"
+          - "-Wno-WIDTHCONCAT"
+          - "-Wno-UNDRIVEN"
+          - "-Wno-BLKANDNBLK"
+          - "-Wno-TIMESCALEMOD"
+          - "-Wno-PINMISSING"
+          - "-Wno-NOLATCH"
+          - "-Wno-LATCH"
+          - "-Wno-INITIALDLY"
+          - "-Wno-STMTDLY"
+          - "-DVERILATOR"
+          - "-DDISABLE_PRIM_CDC_RAND_DELAY"
+          - "--no-timing"
+
+  lint:
+    <<: *default_target
+    default_tool: verilator
+    tools:
+      verilator:
+        mode: lint-only
+        verilator_options:
+          - "-Wno-REDEFMACRO"
+          - "-Wno-MODDUP"
+          - "-Wno-UNOPTFLAT"
+          - "-Wno-WIDTH"
+          - "-Wno-UNUSED"
+          - "-Wno-WIDTHTRUNC"
+          - "-Wno-WIDTHEXPAND"
+          - "-Wno-IMPLICIT"
+          - "-Wno-CASEINCOMPLETE"
+          - "-Wno-MULTIDRIVEN"
+          - "-Wno-DECLFILENAME"
+          - "-Wno-ENUMVALUE"
+          - "-Wno-VARHIDDEN"
+          - "-Wno-GENUNNAMED"
+          - "-Wno-ASCRANGE"
+          - "-Wno-WIDTHCONCAT"
+          - "-Wno-UNDRIVEN"
+          - "-Wno-BLKANDNBLK"
+          - "-Wno-TIMESCALEMOD"
+          - "-Wno-PINMISSING"
+          - "-Wno-NOLATCH"
+          - "-Wno-LATCH"
+          - "-Wno-INITIALDLY"
+          - "-Wno-STMTDLY"
+          - "-DVERILATOR"
+          - "-DDISABLE_PRIM_CDC_RAND_DELAY"
+          - "--no-timing"

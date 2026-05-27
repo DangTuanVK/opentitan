@@ -14,6 +14,7 @@ package sram_ctrl_reg_pkg;
 
   // Number of registers for every interface
   parameter int NumRegsRegs = 9;
+  parameter int NumRegsRam = 1;
 
   // Alert indices
   typedef enum int {

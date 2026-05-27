@@ -1,0 +1,16 @@
+CAPI=2:
+name: lowrisc:saferoot_constants:top_racl_pkg
+description: "SafeRoot RACL package"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:prim:util
+      - lowrisc:ip:tlul
+    files:
+      - rtl/autogen/top_racl_pkg.sv
+      - rtl/autogen/top_saferoot_racl_pkg.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets:
+      - files_rtl

@@ -1,0 +1,12 @@
+// Copyright SafeRoot contributors.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Seed configuration for SafeRoot topgen
+// NOTE: REPLACE WITH PRODUCTION SEEDS BEFORE TAPEOUT
+{
+  name: "testing"
+  topgen_seed: 8835721049284756123094857612309485761230948576123094857612309485
+  otp_img_seed: 5240896041623584478075329919450214815678607265081667609216591226
+  lc_ctrl_seed: 4018220101926439768841177094962692254966325604700177839491899000
+}

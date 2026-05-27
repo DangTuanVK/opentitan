@@ -1,0 +1,21 @@
+CAPI=2:
+name: "lowrisc:saferoot_ip:sensor_ctrl:0.1"
+description: "Sensor Control for SafeRoot"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:prim:assert
+      - lowrisc:prim:edge_detector
+      - lowrisc:prim:mubi
+      - lowrisc:prim:pad_wrapper_pkg
+      - lowrisc:ip:tlul
+      - lowrisc:prim:all
+      - lowrisc:saferoot_ip:sensor_ctrl_pkg
+    files:
+      - rtl/sensor_ctrl_reg_top.sv
+      - rtl/sensor_ctrl.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets:
+      - files_rtl

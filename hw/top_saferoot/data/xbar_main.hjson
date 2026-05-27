@@ -1,0 +1,318 @@
+// Copyright SafeRoot contributors.
+// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// SafeRoot single crossbar configuration.
+// Unlike Earl Grey which has xbar_main + xbar_peri, SafeRoot uses a single
+// unified crossbar for simplicity (fewer modules, simpler routing).
+{ name: "main",
+  type: "xbar",
+  clock_primary: "clk_main_i", // Main clock, used in sockets
+  // SafeRoot: only clk_fixed_i secondary clock (no USB, no SPI host clocks)
+  other_clock_list: ["clk_fixed_i"]
+  reset_primary: "rst_main_ni", // Main reset, used in sockets
+  other_reset_list: ["rst_fixed_ni"]
+
+  nodes: [
+    // =========================================================================
+    // Host interfaces
+    // =========================================================================
+
+    // Ibex instruction fetch port — minimize latency for production use
+    { name:  "rv_core_ibex.corei",
+      type:  "host",
+      addr_space: "hart",
+      clock: "clk_main_i",
+      reset: "rst_main_ni",
+      pipeline: false
+    },
+    // Ibex data port — minimize latency for production use
+    { name:  "rv_core_ibex.cored",
+      type:  "host",
+      addr_space: "hart",
+      clock: "clk_main_i",
+      reset: "rst_main_ni",
+      pipeline: false
+    },
+    // SafeRoot: no rv_dm.sba host — no debug module
+
+    // =========================================================================
+    // Device interfaces — Memory (performance-critical, no pipeline)
+    // =========================================================================
+
+    // ROM: 0x00000000
+    { name:      "rom_ctrl.rom",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: true,
+      rsp_fifo_pass: false,
+    },
+    { name:      "rom_ctrl.regs",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    // SRAM: 0x10000000
+    { name:      "sram_ctrl.regs",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "sram_ctrl.ram",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      pipeline:  false
+    },
+    // Flash: 0x20000000
+    { name:      "flash_ctrl.core",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "flash_ctrl.prim",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "flash_ctrl.mem",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+
+    // =========================================================================
+    // Device interfaces — Crypto MMIO (0x40000000)
+    // =========================================================================
+
+    { name:      "aes",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "hmac",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "kmac",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "csrng",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "entropy_src",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "edn0",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "otbn",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+
+    // =========================================================================
+    // Device interfaces — Security MMIO (0x40100000)
+    // =========================================================================
+
+    { name:      "keymgr",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "lc_ctrl.regs",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "alert_handler",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "otp_ctrl.core",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "otp_macro.prim",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "sensor_ctrl",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+
+    // =========================================================================
+    // Device interfaces — Peripheral MMIO (0x40200000)
+    // =========================================================================
+
+    { name:      "spi_device",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+    { name:      "gpio",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+    { name:      "i2c0",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+    { name:      "uart0",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+
+    // =========================================================================
+    // Device interfaces — System MMIO (0x40300000)
+    // =========================================================================
+
+    { name:      "rv_plic",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      inst_type: "rv_plic",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+    { name:      "rv_timer",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+    { name:      "aon_timer_aon",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false,
+    },
+    { name:      "pwrmgr_aon",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+    { name:      "clkmgr_aon",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+    { name:      "rstmgr_aon",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+    { name:      "pinmux_aon",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
+
+    // =========================================================================
+    // Device interface — CPU config registers
+    // =========================================================================
+
+    { name:      "rv_core_ibex.cfg",
+      type:      "device",
+      clock:     "clk_main_i",
+      reset:     "rst_main_ni",
+      req_fifo_pass: false,
+      rsp_fifo_pass: false,
+    },
+  ],
+
+  // =========================================================================
+  // Connection map
+  // =========================================================================
+  connections: {
+    // Instruction fetch port: only needs ROM, SRAM, flash data memory
+    rv_core_ibex.corei: [
+      "rom_ctrl.rom",
+      "sram_ctrl.ram",
+      "flash_ctrl.mem",
+    ],
+
+    // Data port: needs access to everything
+    rv_core_ibex.cored: [
+      // Memory
+      "rom_ctrl.rom", "rom_ctrl.regs",
+      "sram_ctrl.ram", "sram_ctrl.regs",
+      "flash_ctrl.core", "flash_ctrl.prim", "flash_ctrl.mem",
+      // Crypto
+      "aes", "hmac", "kmac", "csrng", "entropy_src", "edn0", "otbn",
+      // Security
+      "keymgr", "lc_ctrl.regs", "alert_handler",
+      "otp_ctrl.core", "otp_macro.prim", "sensor_ctrl",
+      // Peripherals
+      "spi_device", "gpio", "i2c0", "uart0",
+      // System
+      "rv_plic", "rv_timer", "aon_timer_aon",
+      "pwrmgr_aon", "clkmgr_aon", "rstmgr_aon", "pinmux_aon",
+      // CPU config
+      "rv_core_ibex.cfg",
+    ],
+  },
+}

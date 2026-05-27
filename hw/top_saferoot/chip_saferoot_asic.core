@@ -1,0 +1,49 @@
+CAPI=2:
+name: "lowrisc:systems:chip_saferoot_asic:0.1"
+description: "SafeRoot ASIC chip level"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:systems:top_saferoot:0.1
+      - lowrisc:systems:top_saferoot_pkg
+      - "!fileset_partner ? (lowrisc:prim_generic:all)"
+      - "!fileset_partner ? (lowrisc:prim_generic:flash)"
+    files:
+      - rtl/chip_saferoot_asic.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_rtl
+    toplevel: chip_saferoot_asic
+
+  lint:
+    filesets:
+      - files_rtl
+    toplevel: chip_saferoot_asic
+    default_tool: verilator
+    tools:
+      verilator:
+        mode: lint-only
+        verilator_options:
+          - "-Wall"
+          - "-Wno-REDEFMACRO"
+          - "-Wno-MODDUP"
+          - "-Wno-UNOPTFLAT"
+          - "-Wno-WIDTH"
+          - "-Wno-UNUSED"
+          - "-Wno-WIDTHTRUNC"
+          - "-Wno-WIDTHEXPAND"
+          - "-Wno-IMPLICIT"
+          - "-Wno-CASEINCOMPLETE"
+          - "-Wno-MULTIDRIVEN"
+          - "-Wno-DECLFILENAME"
+          - "-Wno-ENUMVALUE"
+          - "-Wno-VARHIDDEN"
+          - "-Wno-GENUNNAMED"
+          - "-Wno-ASCRANGE"
+          - "-Wno-WIDTHCONCAT"
+          - "-Wno-UNDRIVEN"
+          - "-DVERILATOR"
+          - "-DDISABLE_PRIM_CDC_RAND_DELAY"

@@ -92,3 +92,9 @@ book
 
 # Custom Ruff config overrides
 .ruff.toml
+# Added for saferoot branch — build artifacts not to track
+sw/saferoot/**/*.elf
+sw/saferoot/**/*.map
+sw/saferoot/**/*.bin
+sw/saferoot/**/*.dis
+saferoot_sim.vcd

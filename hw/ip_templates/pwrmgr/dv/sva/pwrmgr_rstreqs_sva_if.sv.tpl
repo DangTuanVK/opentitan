@@ -38,6 +38,9 @@ interface pwrmgr_rstreqs_sva_if
 % elif topname == "darjeeling":
   // Darjeeling has a 16x clock ratio between the slow and fast clocks. (1GHz / 62.5MHz = 16)
   localparam int FastToSlowFreqRatio = 16;
+% elif topname == "saferoot":
+  // SafeRoot: 100MHz main / 200kHz AON = 500x ratio
+  localparam int FastToSlowFreqRatio = 500;
 % else:
 <% assert False, f"Unsupported top: {topname}" %>\
 % endif

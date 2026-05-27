@@ -1,0 +1,52 @@
+# SafeRoot Crypto IP Functional Tests — Makefile
+# Targets: test_hmac, test_kmac, test_csrng, test_keymgr
+# Each produces a .vmem file for Verilator simulation
+
+CROSS   = riscv32-unknown-elf-
+CC      = $(CROSS)gcc
+OBJCOPY = $(CROSS)objcopy
+OBJDUMP = $(CROSS)objdump
+
+CFLAGS  = -march=rv32imc -mabi=ilp32 -Os -Wall -Wextra \
+          -ffunction-sections -fdata-sections -nostdlib -nostartfiles \
+          -ffreestanding -fno-builtin -I../hal
+LDFLAGS = -T ../rom/rom.ld -nostdlib -Wl,--gc-sections
+
+COMMON  = ../rom/start.S ../rom/util.c ../hal/uart_drv.c
+
+all: test_hmac.vmem test_kmac.vmem test_csrng.vmem test_keymgr.vmem
+
+# --- HMAC/SHA-256 test (uses HMAC HAL driver) ---
+test_hmac.elf: $(COMMON) ../hal/hmac_drv.c test_hmac_sha.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-Map=test_hmac.map -o $@ $^
+
+# --- KMAC test (direct register access) ---
+test_kmac.elf: $(COMMON) test_kmac.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-Map=test_kmac.map -o $@ $^
+
+# --- CSRNG test (direct register access) ---
+test_csrng.elf: $(COMMON) test_csrng.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-Map=test_csrng.map -o $@ $^
+
+# --- KeyMgr test (direct register access) ---
+test_keymgr.elf: $(COMMON) test_keymgr.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-Map=test_keymgr.map -o $@ $^
+
+# --- Generic rules ---
+%.bin: %.elf
+	$(OBJCOPY) -O binary $< $@
+
+%.vmem: %.bin
+	od -An -tx4 -v -w4 $< | sed 's/^ *//' > $@
+	@echo "$@: $$(wc -l < $@) words, $$(wc -c < $<) bytes"
+
+%.dis: %.elf
+	$(OBJDUMP) -d -t $< > $@
+
+clean:
+	rm -f test_hmac.elf test_hmac.bin test_hmac.vmem test_hmac.map test_hmac.dis
+	rm -f test_kmac.elf test_kmac.bin test_kmac.vmem test_kmac.map test_kmac.dis
+	rm -f test_csrng.elf test_csrng.bin test_csrng.vmem test_csrng.map test_csrng.dis
+	rm -f test_keymgr.elf test_keymgr.bin test_keymgr.vmem test_keymgr.map test_keymgr.dis
+
+.PHONY: all clean

@@ -1,0 +1,51 @@
+# SafeRoot Peripheral Functional Tests — Makefile
+# Targets: test_uart_func, test_gpio_func, test_spi_func, test_i2c_func
+# Each produces a .vmem file for Verilator simulation.
+
+CROSS   = riscv32-unknown-elf-
+CC      = $(CROSS)gcc
+OBJCOPY = $(CROSS)objcopy
+OBJDUMP = $(CROSS)objdump
+
+CFLAGS  = -march=rv32imc -mabi=ilp32 -Os -Wall -Wextra \
+          -ffunction-sections -fdata-sections -nostdlib -nostartfiles \
+          -ffreestanding -fno-builtin -I../hal
+LDFLAGS = -T ../rom/rom.ld -nostdlib -Wl,--gc-sections
+
+START_S = ../rom/start.S
+UTIL_C  = ../rom/util.c
+UART_C  = ../hal/uart_drv.c
+
+TARGETS = test_uart_func test_gpio_func test_spi_func test_i2c_func
+
+all: $(addsuffix .vmem, $(TARGETS))
+
+# --- UART functional test ---
+test_uart_func.elf: test_uart_func.c $(START_S) $(UTIL_C) $(UART_C)
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-Map=test_uart_func.map -o $@ $(START_S) $(UTIL_C) $(UART_C) $<
+
+# --- GPIO functional test ---
+test_gpio_func.elf: test_gpio_func.c $(START_S) $(UTIL_C) $(UART_C) ../hal/gpio_drv.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-Map=test_gpio_func.map -o $@ $(START_S) $(UTIL_C) $(UART_C) ../hal/gpio_drv.c $<
+
+# --- SPI functional test ---
+test_spi_func.elf: test_spi_func.c $(START_S) $(UTIL_C) $(UART_C) ../hal/spi_drv.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-Map=test_spi_func.map -o $@ $(START_S) $(UTIL_C) $(UART_C) ../hal/spi_drv.c $<
+
+# --- I2C functional test (no HAL driver, direct reg access) ---
+test_i2c_func.elf: test_i2c_func.c $(START_S) $(UTIL_C) $(UART_C)
+	$(CC) $(CFLAGS) $(LDFLAGS) -Wl,-Map=test_i2c_func.map -o $@ $(START_S) $(UTIL_C) $(UART_C) $<
+
+# --- Generic rules ---
+%.bin: %.elf
+	$(OBJCOPY) -O binary $< $@
+
+%.vmem: %.bin
+	od -An -tx4 -v -w4 $< | sed 's/^ *//' > $@
+	@echo "Test image: $@ ($$(wc -l < $@) words, $$(wc -c < $<) bytes)"
+
+clean:
+	rm -f $(addsuffix .elf, $(TARGETS)) $(addsuffix .bin, $(TARGETS)) \
+	      $(addsuffix .vmem, $(TARGETS)) $(addsuffix .map, $(TARGETS))
+
+.PHONY: all clean
