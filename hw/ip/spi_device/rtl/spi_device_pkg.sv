@@ -400,7 +400,12 @@ package spi_device_pkg;
   } sram_type_e;
 
   // Sram parameters
-  parameter sram_type_e DefaultSramType = SramType2p;
+  // SafeRoot fork (2026-05-28): changed from SramType2p (true dual-RW) to
+  // SramType1r1w (1 write port + 1 read port) so the SPI buffers map 1:1 to
+  // sky130_sram_2kbyte_1rw1r_32x512_8 macros without dual-write coherency logic.
+  // Each buffer in spid_dpram is functionally unidirectional (sys→spi or spi→sys),
+  // so 1r1w semantics fit the use case naturally.
+  parameter sram_type_e DefaultSramType = SramType1r1w;
   parameter int unsigned SramDw      = 32;
   parameter int unsigned SramStrbW   = SramDw/8;
   parameter int unsigned SramOffsetW = $clog2(SramStrbW);
