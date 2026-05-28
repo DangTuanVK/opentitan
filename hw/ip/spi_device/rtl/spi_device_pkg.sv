@@ -497,8 +497,10 @@ package spi_device_pkg;
   // the ingress buffer is higher in the map (controlled by reggen).
   import spi_device_reg_pkg::SPI_DEVICE_EGRESS_BUFFER_OFFSET;
   import spi_device_reg_pkg::SPI_DEVICE_INGRESS_BUFFER_OFFSET;
-  parameter int unsigned SramEgressByteOffset = 0;
-  parameter int unsigned SramIngressByteOffset =
+  // SafeRoot fork (2026-05-28): changed from `int unsigned` to `logic [31:0]`
+  // so sv2v 0.0.13 can bit-slice these parameters at lines 505/527 below.
+  parameter logic [31:0] SramEgressByteOffset = 0;
+  parameter logic [31:0] SramIngressByteOffset =
     SPI_DEVICE_INGRESS_BUFFER_OFFSET - SPI_DEVICE_EGRESS_BUFFER_OFFSET;
 
   parameter sram_addr_t SramEgressIdx =
