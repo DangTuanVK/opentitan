@@ -235,36 +235,28 @@ package spi_device_pkg;
   // reason why command slots cannot be fully flexible (unlike NumCmdInfo-way $)
   // is that the slots are used in the Flash mode also. The Read Status/ SFDP/
   // etc submodules only see the pre-assigned slot and use it.
-  typedef enum int unsigned {
-    // Read Status subblock in Flash mode only uses opcode of cmd_info
-    CmdInfoReadStatus1 = 0,
-    CmdInfoReadStatus2 = 1,
-    CmdInfoReadStatus3 = 2,
-
-    CmdInfoReadJedecId = 3,
-
-    CmdInfoReadSfdp = 4,
-
-    // 6 slots are assigned to Read commands in Flash mode.
-    //
-    // Read Data / Fast Read / Fast Read Dual / Fast Read Quad
-    // Fast Read Dual IO / Fast Read Quad IO (IO commands are TBD)
-    CmdInfoReadCmdStart = 5,
-    CmdInfoReadCmdEnd   = 10,
-
-    // other slots are used in the Passthrough and/or upload submodules. These
-    // free slots may be used for the commands that are not processed in the
-    // flash mode.  Examples are "Release Power-down / ID",
-    // "Manufacture/Device ID", etc.  They are not always Input mode. Some has
-    // a dummy cycle followed by the output field.
-    CmdInfoReserveStart = 11,
-    CmdInfoReserveEnd   = spi_device_reg_pkg::NumCmdInfo - 1,
-    CmdInfoEn4B         = CmdInfoReserveEnd + 1,
-    CmdInfoEx4B         = CmdInfoEn4B + 1,
-    CmdInfoWrEn         = CmdInfoEx4B + 1,
-    CmdInfoWrDi         = CmdInfoWrEn + 1,
-    NumTotalCmdInfo
-  } cmd_info_index_e;
+  // SafeRoot fork (2026-05-28): originally `typedef enum int unsigned { ... }
+  // cmd_info_index_e`, but sv2v 0.0.13 fails to propagate chained enum values
+  // (CmdInfoEx4B = CmdInfoEn4B + 1, etc.) across modules — they appear as
+  // undeclared identifiers in cross-module references. Converted to plain
+  // `parameter int unsigned` (literal-computed since NumCmdInfo is known
+  // statically = 24). cmd_info_index_e is now a typedef'd width-only type for
+  // any remaining places that use it (none currently — kept for compatibility).
+  parameter int unsigned CmdInfoReadStatus1  = 0;
+  parameter int unsigned CmdInfoReadStatus2  = 1;
+  parameter int unsigned CmdInfoReadStatus3  = 2;
+  parameter int unsigned CmdInfoReadJedecId  = 3;
+  parameter int unsigned CmdInfoReadSfdp     = 4;
+  parameter int unsigned CmdInfoReadCmdStart = 5;
+  parameter int unsigned CmdInfoReadCmdEnd   = 10;
+  parameter int unsigned CmdInfoReserveStart = 11;
+  parameter int unsigned CmdInfoReserveEnd   = spi_device_reg_pkg::NumCmdInfo - 1;
+  parameter int unsigned CmdInfoEn4B         = spi_device_reg_pkg::NumCmdInfo;
+  parameter int unsigned CmdInfoEx4B         = spi_device_reg_pkg::NumCmdInfo + 1;
+  parameter int unsigned CmdInfoWrEn         = spi_device_reg_pkg::NumCmdInfo + 2;
+  parameter int unsigned CmdInfoWrDi         = spi_device_reg_pkg::NumCmdInfo + 3;
+  parameter int unsigned NumTotalCmdInfo     = spi_device_reg_pkg::NumCmdInfo + 4;
+  typedef logic [$clog2(NumTotalCmdInfo)-1:0] cmd_info_index_e;
 
   parameter int unsigned NumReadCmdInfo = CmdInfoReadCmdEnd - CmdInfoReadCmdStart + 1;
 
