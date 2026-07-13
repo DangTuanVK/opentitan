@@ -872,7 +872,7 @@ extern const top_saferoot_alert_peripheral_t
 
 // PERIPH_INSEL ranges from 0 to NUM_MIO_PADS + 2 -1}
 //  0 and 1 are tied to value 0 and 1
-#define NUM_MIO_PADS 8
+#define NUM_MIO_PADS 16
 #define NUM_DIO_PADS 6
 
 #define PINMUX_PERIPH_OUTSEL_IDX_OFFSET 3
@@ -937,7 +937,15 @@ typedef enum top_saferoot_pinmux_insel {
   kTopSaferootPinmuxInselMio5 = 7, /**< MIO Pad 5 */
   kTopSaferootPinmuxInselMio6 = 8, /**< MIO Pad 6 */
   kTopSaferootPinmuxInselMio7 = 9, /**< MIO Pad 7 */
-  kTopSaferootPinmuxInselLast = 9, /**< \internal Last valid insel value */
+  kTopSaferootPinmuxInselMio8 = 10, /**< MIO Pad 8 */
+  kTopSaferootPinmuxInselMio9 = 11, /**< MIO Pad 9 */
+  kTopSaferootPinmuxInselMio10 = 12, /**< MIO Pad 10 */
+  kTopSaferootPinmuxInselMio11 = 13, /**< MIO Pad 11 */
+  kTopSaferootPinmuxInselMio12 = 14, /**< MIO Pad 12 */
+  kTopSaferootPinmuxInselMio13 = 15, /**< MIO Pad 13 */
+  kTopSaferootPinmuxInselMio14 = 16, /**< MIO Pad 14 */
+  kTopSaferootPinmuxInselMio15 = 17, /**< MIO Pad 15 */
+  kTopSaferootPinmuxInselLast = 17, /**< \internal Last valid insel value */
 } top_saferoot_pinmux_insel_t;
 
 /**
@@ -952,7 +960,15 @@ typedef enum top_saferoot_pinmux_mio_out {
   kTopSaferootPinmuxMioOutMio5 = 5, /**< MIO Pad 5 */
   kTopSaferootPinmuxMioOutMio6 = 6, /**< MIO Pad 6 */
   kTopSaferootPinmuxMioOutMio7 = 7, /**< MIO Pad 7 */
-  kTopSaferootPinmuxMioOutLast = 7, /**< \internal Last valid mio output */
+  kTopSaferootPinmuxMioOutMio8 = 8, /**< MIO Pad 8 */
+  kTopSaferootPinmuxMioOutMio9 = 9, /**< MIO Pad 9 */
+  kTopSaferootPinmuxMioOutMio10 = 10, /**< MIO Pad 10 */
+  kTopSaferootPinmuxMioOutMio11 = 11, /**< MIO Pad 11 */
+  kTopSaferootPinmuxMioOutMio12 = 12, /**< MIO Pad 12 */
+  kTopSaferootPinmuxMioOutMio13 = 13, /**< MIO Pad 13 */
+  kTopSaferootPinmuxMioOutMio14 = 14, /**< MIO Pad 14 */
+  kTopSaferootPinmuxMioOutMio15 = 15, /**< MIO Pad 15 */
+  kTopSaferootPinmuxMioOutLast = 15, /**< \internal Last valid mio output */
 } top_saferoot_pinmux_mio_out_t;
 
 /**
@@ -1036,7 +1052,15 @@ typedef enum top_saferoot_muxed_pads {
   kTopSaferootMuxedPadsMio5 = 5, /**<  */
   kTopSaferootMuxedPadsMio6 = 6, /**<  */
   kTopSaferootMuxedPadsMio7 = 7, /**<  */
-  kTopSaferootMuxedPadsLast = 7, /**< \internal Last valid muxed pad */
+  kTopSaferootMuxedPadsMio8 = 8, /**<  */
+  kTopSaferootMuxedPadsMio9 = 9, /**<  */
+  kTopSaferootMuxedPadsMio10 = 10, /**<  */
+  kTopSaferootMuxedPadsMio11 = 11, /**<  */
+  kTopSaferootMuxedPadsMio12 = 12, /**<  */
+  kTopSaferootMuxedPadsMio13 = 13, /**<  */
+  kTopSaferootMuxedPadsMio14 = 14, /**<  */
+  kTopSaferootMuxedPadsMio15 = 15, /**<  */
+  kTopSaferootMuxedPadsLast = 15, /**< \internal Last valid muxed pad */
 } top_saferoot_muxed_pads_t;
 
 /**

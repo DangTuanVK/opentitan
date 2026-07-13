@@ -88,10 +88,9 @@
       { name: "sys",            gen: true,  type: "top", parent: "sys_src", clock: "main"    },
       { name: "sys_io_div4",    gen: true,  type: "top", parent: "sys_src", clock: "io_div4" },
       { name: "spi_device",     gen: true,  type: "top", parent: "lc_src", clock: "io_div4", sw: true },
-      // SafeRoot: spi_host0, spi_host1 resets removed — slave-only design
+      // SafeRoot: spi_host0/1 removed — slave-only design (SPI-master gỡ khỏi QFN-32)
       // SafeRoot: usb, usb_aon resets removed — no USB
       { name: "i2c0",           gen: true,  type: "top", parent: "lc_src", clock: "io_div4", sw: true },
-      { name: "spi_host0",      gen: true,  type: "top", parent: "lc_src", clock: "io",      sw: true },  // SafeRoot: re-added SPI master (Boot-Guard)
       // SafeRoot: i2c1, i2c2 resets removed — only 1 I2C
     ]
   },
@@ -389,16 +388,6 @@
       reset_connections: {rst_ni: "spi_device"},
       base_addr: {
         hart: "0x40200000",
-      },
-    },
-    { name: "spi_host0",
-      // SafeRoot: SPI MASTER — Boot-Guard media datapath (read/verify host SPI-NOR)
-      type: "spi_host",
-      clock_srcs: {clk_i: "io"},
-      clock_group: "peri",
-      reset_connections: {rst_ni: "spi_host0"},
-      base_addr: {
-        hart: "0x40240000",
       },
     },
     { name: "gpio",

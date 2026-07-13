@@ -662,6 +662,14 @@ package top_saferoot_pkg;
     MioPadMio5 = 5,
     MioPadMio6 = 6,
     MioPadMio7 = 7,
+    MioPadMio8 = 8,
+    MioPadMio9 = 9,
+    MioPadMio10 = 10,
+    MioPadMio11 = 11,
+    MioPadMio12 = 12,
+    MioPadMio13 = 13,
+    MioPadMio14 = 14,
+    MioPadMio15 = 15,
     MioPadCount
   } mio_pad_e;
 

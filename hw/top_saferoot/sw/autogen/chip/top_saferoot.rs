@@ -1410,7 +1410,7 @@ pub const ALERT_FOR_PERIPHERAL: [AlertPeripheral; 49] = [
 
 // PERIPH_INSEL ranges from 0 to NUM_MIO_PADS + 2 -1}
 //  0 and 1 are tied to value 0 and 1
-pub const NUM_MIO_PADS: usize = 8;
+pub const NUM_MIO_PADS: usize = 16;
 pub const NUM_DIO_PADS: usize = 6;
 
 pub const PINMUX_MIO_PERIPH_INSEL_IDX_OFFSET: usize = 2;
@@ -1572,6 +1572,22 @@ pub enum PinmuxInsel {
     Mio6 = 8,
     /// MIO Pad 7
     Mio7 = 9,
+    /// MIO Pad 8
+    Mio8 = 10,
+    /// MIO Pad 9
+    Mio9 = 11,
+    /// MIO Pad 10
+    Mio10 = 12,
+    /// MIO Pad 11
+    Mio11 = 13,
+    /// MIO Pad 12
+    Mio12 = 14,
+    /// MIO Pad 13
+    Mio13 = 15,
+    /// MIO Pad 14
+    Mio14 = 16,
+    /// MIO Pad 15
+    Mio15 = 17,
 }
 
 impl TryFrom<u32> for PinmuxInsel {
@@ -1588,6 +1604,14 @@ impl TryFrom<u32> for PinmuxInsel {
             7 => Ok(Self::Mio5),
             8 => Ok(Self::Mio6),
             9 => Ok(Self::Mio7),
+            10 => Ok(Self::Mio8),
+            11 => Ok(Self::Mio9),
+            12 => Ok(Self::Mio10),
+            13 => Ok(Self::Mio11),
+            14 => Ok(Self::Mio12),
+            15 => Ok(Self::Mio13),
+            16 => Ok(Self::Mio14),
+            17 => Ok(Self::Mio15),
             _ => Err(val),
         }
     }
@@ -1613,6 +1637,22 @@ pub enum PinmuxMioOut {
     Mio6 = 6,
     /// MIO Pad 7
     Mio7 = 7,
+    /// MIO Pad 8
+    Mio8 = 8,
+    /// MIO Pad 9
+    Mio9 = 9,
+    /// MIO Pad 10
+    Mio10 = 10,
+    /// MIO Pad 11
+    Mio11 = 11,
+    /// MIO Pad 12
+    Mio12 = 12,
+    /// MIO Pad 13
+    Mio13 = 13,
+    /// MIO Pad 14
+    Mio14 = 14,
+    /// MIO Pad 15
+    Mio15 = 15,
 }
 
 impl TryFrom<u32> for PinmuxMioOut {
@@ -1627,6 +1667,14 @@ impl TryFrom<u32> for PinmuxMioOut {
             5 => Ok(Self::Mio5),
             6 => Ok(Self::Mio6),
             7 => Ok(Self::Mio7),
+            8 => Ok(Self::Mio8),
+            9 => Ok(Self::Mio9),
+            10 => Ok(Self::Mio10),
+            11 => Ok(Self::Mio11),
+            12 => Ok(Self::Mio12),
+            13 => Ok(Self::Mio13),
+            14 => Ok(Self::Mio14),
+            15 => Ok(Self::Mio15),
             _ => Err(val),
         }
     }
@@ -1833,6 +1881,14 @@ pub enum MuxedPads {
     Mio5 = 5,
     Mio6 = 6,
     Mio7 = 7,
+    Mio8 = 8,
+    Mio9 = 9,
+    Mio10 = 10,
+    Mio11 = 11,
+    Mio12 = 12,
+    Mio13 = 13,
+    Mio14 = 14,
+    Mio15 = 15,
 }
 
 impl TryFrom<u32> for MuxedPads {
@@ -1847,6 +1903,14 @@ impl TryFrom<u32> for MuxedPads {
             5 => Ok(Self::Mio5),
             6 => Ok(Self::Mio6),
             7 => Ok(Self::Mio7),
+            8 => Ok(Self::Mio8),
+            9 => Ok(Self::Mio9),
+            10 => Ok(Self::Mio10),
+            11 => Ok(Self::Mio11),
+            12 => Ok(Self::Mio12),
+            13 => Ok(Self::Mio13),
+            14 => Ok(Self::Mio14),
+            15 => Ok(Self::Mio15),
             _ => Err(val),
         }
     }

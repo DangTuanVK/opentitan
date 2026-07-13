@@ -6,4 +6,4 @@ util/topgen.py -t hw/top_saferoot/data/top_saferoot.hjson -o hw/top_saferoot/
 -->
 |  Target Name  |  #IO Banks  |  #Muxed Pads  |  #Direct Pads  |  #Manual Pads  |  #Total Pads  |      Pinout / Pinmux Tables      |
 |:-------------:|:-----------:|:-------------:|:--------------:|:--------------:|:-------------:|:--------------------------------:|
-|     ASIC      |      1      |       8       |       6        |       3        |      17       | [Pinout Table](./pinout_asic.md) |
+|     ASIC      |      1      |      16       |       6        |       3        |      25       | [Pinout Table](./pinout_asic.md) |

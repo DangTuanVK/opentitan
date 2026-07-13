@@ -242,7 +242,7 @@
     { name: "NMioPads",
       desc: "Number of muxed IO pads",
       type: "int",
-      default: "8",
+      default: "16",
       local: "true"
     },
     { name: "NDioPads",
@@ -344,7 +344,7 @@
                   regwen_multi: "true",
                   cname:        "IN",
                   fields: [
-                    { bits: "3:0",
+                    { bits: "4:0",
                       name: "IN",
                       desc: '''
                       0: tie constantly to zero, 1: tie constantly to 1,
@@ -1007,7 +1007,7 @@
                   regwen_multi: "true",
                   cname:        "DETECTOR",
                   fields: [
-                    { bits: "3:0",
+                    { bits: "4:0",
                       name: "SEL",
                       resval: 0,
                       desc: '''Selects a specific MIO or DIO pad (depending on !!WKUP_DETECTOR configuration).

@@ -66,7 +66,15 @@ with_unknown! {
         Mio5 = 7,
         Mio6 = 8,
         Mio7 = 9,
-        End = 10,
+        Mio8 = 10,
+        Mio9 = 11,
+        Mio10 = 12,
+        Mio11 = 13,
+        Mio12 = 14,
+        Mio13 = 15,
+        Mio14 = 16,
+        Mio15 = 17,
+        End = 18,
     }
 
     pub enum PinmuxMioOut: u32 [default = Self::End] {
@@ -78,7 +86,15 @@ with_unknown! {
         Mio5 = 5,
         Mio6 = 6,
         Mio7 = 7,
-        End = 8,
+        Mio8 = 8,
+        Mio9 = 9,
+        Mio10 = 10,
+        Mio11 = 11,
+        Mio12 = 12,
+        Mio13 = 13,
+        Mio14 = 14,
+        Mio15 = 15,
+        End = 16,
     }
 
     pub enum PinmuxOutsel: u32 [default = Self::End] {
@@ -153,6 +169,14 @@ with_unknown! {
         Mio5 = 5,
         Mio6 = 6,
         Mio7 = 7,
-        End = 8,
+        Mio8 = 8,
+        Mio9 = 9,
+        Mio10 = 10,
+        Mio11 = 11,
+        Mio12 = 12,
+        Mio13 = 13,
+        Mio14 = 14,
+        Mio15 = 15,
+        End = 16,
     }
 }

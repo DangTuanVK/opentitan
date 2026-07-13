@@ -17,8 +17,6 @@ package pwrmgr_reg_pkg;
   parameter int NumRomInputs = 1;
   parameter int ResetMainPwrIdx = 1;
   parameter int ResetEscIdx = 2;
-  // SafeRoot: no rv_dm, so NdmIdx points to unused bit 0 (always 0)
-  parameter int ResetNdmIdx = 0;
   parameter int NumAlerts = 1;
 
   // Address widths within the block

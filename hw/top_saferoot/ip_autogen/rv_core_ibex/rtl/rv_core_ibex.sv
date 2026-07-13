@@ -280,10 +280,6 @@ module rv_core_ibex
   // Escalation receiver that converts differential
   // protocol into single ended signal.
   logic esc_irq_nm;
-`ifdef VERILATOR
-  assign esc_irq_nm = 1'b0;
-  assign esc_rx_o = prim_esc_pkg::ESC_RX_DEFAULT;
-`else
   prim_esc_receiver #(
     .N_ESC_SEV   (NEscalationSeverities),
     .PING_CNT_DW (WidthPingCounter),
@@ -295,7 +291,6 @@ module rv_core_ibex
     .esc_rx_o,
     .esc_tx_i
   );
-`endif
 
   // Synchronize to fast Ibex clock domain.
   logic alert_irq_nm;
@@ -421,13 +416,9 @@ module rv_core_ibex
   // Multibit AND computation for fetch enable. Fetch is only enabled when local fetch enable,
   // lifecycle CPU enable and power manager CPU enable are all enabled.
   lc_ctrl_pkg::lc_tx_t fetch_enable;
-`ifdef VERILATOR
-  assign fetch_enable = lc_ctrl_pkg::On; // bypass all gates for simulation
-`else
   assign fetch_enable = lc_ctrl_pkg::lc_tx_and_hi(local_fetch_enable_q,
                                                   lc_ctrl_pkg::lc_tx_and_hi(lc_cpu_en[0],
                                                                             pwrmgr_cpu_en[0]));
-`endif
 
   ibex_pkg::crash_dump_t crash_dump;
   ibex_top #(
@@ -790,11 +781,7 @@ module rv_core_ibex
     .flush_req_i    (1'b0),
     .flush_ack_o    (),
     .resp_pending_o (),
-`ifdef VERILATOR
-    .lc_en_i        (lc_ctrl_pkg::On),
-`else
     .lc_en_i        (lc_cpu_en[1]),
-`endif
     .err_o          (tlul_lc_gate_core_d_error)
   );
 

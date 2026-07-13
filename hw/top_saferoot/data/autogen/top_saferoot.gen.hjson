@@ -9100,6 +9100,78 @@
         idx: 7
         port_type: inout
       }
+      {
+        name: MIO8
+        type: BidirStd
+        bank: VCC
+        connection: muxed
+        desc: Muxed IO pad
+        idx: 8
+        port_type: inout
+      }
+      {
+        name: MIO9
+        type: BidirStd
+        bank: VCC
+        connection: muxed
+        desc: Muxed IO pad
+        idx: 9
+        port_type: inout
+      }
+      {
+        name: MIO10
+        type: BidirStd
+        bank: VCC
+        connection: muxed
+        desc: Muxed IO pad
+        idx: 10
+        port_type: inout
+      }
+      {
+        name: MIO11
+        type: BidirStd
+        bank: VCC
+        connection: muxed
+        desc: Muxed IO pad
+        idx: 11
+        port_type: inout
+      }
+      {
+        name: MIO12
+        type: BidirStd
+        bank: VCC
+        connection: muxed
+        desc: Muxed IO pad
+        idx: 12
+        port_type: inout
+      }
+      {
+        name: MIO13
+        type: BidirStd
+        bank: VCC
+        connection: muxed
+        desc: Muxed IO pad
+        idx: 13
+        port_type: inout
+      }
+      {
+        name: MIO14
+        type: BidirStd
+        bank: VCC
+        connection: muxed
+        desc: Muxed IO pad
+        idx: 14
+        port_type: inout
+      }
+      {
+        name: MIO15
+        type: BidirStd
+        bank: VCC
+        connection: muxed
+        desc: Muxed IO pad
+        idx: 15
+        port_type: inout
+      }
     ]
   }
   pinmux:
@@ -9859,7 +9931,7 @@
         inouts: 34
         inputs: 5
         outputs: 12
-        pads: 8
+        pads: 16
       }
     }
   }

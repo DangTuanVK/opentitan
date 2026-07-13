@@ -7,7 +7,7 @@
   {
     n_wkup_detect: 4
     wkup_cnt_width: 8
-    n_mio_pads: 8
+    n_mio_pads: 16
     n_mio_periph_in: 39
     n_mio_periph_out: 46
     n_dio_pads: 6
