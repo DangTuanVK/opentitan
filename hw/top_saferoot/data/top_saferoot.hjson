@@ -91,6 +91,7 @@
       // SafeRoot: spi_host0, spi_host1 resets removed — slave-only design
       // SafeRoot: usb, usb_aon resets removed — no USB
       { name: "i2c0",           gen: true,  type: "top", parent: "lc_src", clock: "io_div4", sw: true },
+      { name: "spi_host0",      gen: true,  type: "top", parent: "lc_src", clock: "io",      sw: true },  // SafeRoot: re-added SPI master (Boot-Guard)
       // SafeRoot: i2c1, i2c2 resets removed — only 1 I2C
     ]
   },
@@ -388,6 +389,16 @@
       reset_connections: {rst_ni: "spi_device"},
       base_addr: {
         hart: "0x40200000",
+      },
+    },
+    { name: "spi_host0",
+      // SafeRoot: SPI MASTER — Boot-Guard media datapath (read/verify host SPI-NOR)
+      type: "spi_host",
+      clock_srcs: {clk_i: "io"},
+      clock_group: "peri",
+      reset_connections: {rst_ni: "spi_host0"},
+      base_addr: {
+        hart: "0x40240000",
       },
     },
     { name: "gpio",
@@ -1048,6 +1059,16 @@
       { name: 'MIO5'            , type: 'BidirOd' , bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
       { name: 'MIO6'            , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
       { name: 'MIO7'            , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
+      // Option B (2026-07-06, chủ nhiệm chốt): +MIO8-15 → 16 MIO + 6 DIO = 22 pad tín hiệu
+      // đủ full QFN-32 (SPI4+GPIO4+I2C2+JTAG5+control5 BOOT_OK/RESET_N/ALERT_N/WAKE/FAILSAFE).
+      { name: 'MIO8'            , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
+      { name: 'MIO9'            , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
+      { name: 'MIO10'           , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
+      { name: 'MIO11'           , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
+      { name: 'MIO12'           , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
+      { name: 'MIO13'           , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
+      { name: 'MIO14'           , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
+      { name: 'MIO15'           , type: 'BidirStd', bank: 'VCC', connection: 'muxed' , desc: 'Muxed IO pad'},
     ]
   },
 

@@ -203,6 +203,12 @@
       reset:     "rst_fixed_ni",
       pipeline:  false
     },
+    { name:      "spi_host0",
+      type:      "device",
+      clock:     "clk_fixed_i",
+      reset:     "rst_fixed_ni",
+      pipeline:  false
+    },
     { name:      "gpio",
       type:      "device",
       clock:     "clk_fixed_i",
@@ -307,7 +313,7 @@
       "keymgr", "lc_ctrl.regs", "alert_handler",
       "otp_ctrl.core", "otp_macro.prim", "sensor_ctrl",
       // Peripherals
-      "spi_device", "gpio", "i2c0", "uart0",
+      "spi_device", "gpio", "i2c0", "uart0", "spi_host0",
       // System
       "rv_plic", "rv_timer", "aon_timer_aon",
       "pwrmgr_aon", "clkmgr_aon", "rstmgr_aon", "pinmux_aon",
