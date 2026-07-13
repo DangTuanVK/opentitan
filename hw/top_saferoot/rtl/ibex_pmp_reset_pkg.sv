@@ -14,8 +14,8 @@ package ibex_pmp_reset_pkg;
     '{lock: 1'b0, mode: PMP_MODE_OFF,   exec: 1'b0, write: 1'b0, read: 1'b0}, // 0
     '{lock: 1'b0, mode: PMP_MODE_OFF,   exec: 1'b0, write: 1'b0, read: 1'b0}, // 1
     '{lock: 1'b1, mode: PMP_MODE_NAPOT, exec: 1'b1, write: 1'b0, read: 1'b1}, // 2  [ROM: LRX]
-    '{lock: 1'b0, mode: PMP_MODE_OFF,   exec: 1'b0, write: 1'b0, read: 1'b0}, // 3
-    '{lock: 1'b0, mode: PMP_MODE_OFF,   exec: 1'b0, write: 1'b0, read: 1'b0}, // 4
+    '{lock: 1'b1, mode: PMP_MODE_NAPOT, exec: 1'b0, write: 1'b1, read: 1'b1}, // 3  [SRAM: LRW] SafeRoot: allow simple ROM to use stack/RAM under MMWP
+    '{lock: 1'b1, mode: PMP_MODE_NAPOT, exec: 1'b1, write: 1'b0, read: 1'b1}, // 4  [FLASH: LRX] SafeRoot: ROM reads/verifies BL0 from eflash, may jump to it
     '{lock: 1'b0, mode: PMP_MODE_OFF,   exec: 1'b0, write: 1'b0, read: 1'b0}, // 5
     '{lock: 1'b0, mode: PMP_MODE_OFF,   exec: 1'b0, write: 1'b0, read: 1'b0}, // 6
     '{lock: 1'b0, mode: PMP_MODE_OFF,   exec: 1'b0, write: 1'b0, read: 1'b0}, // 7
@@ -38,9 +38,9 @@ package ibex_pmp_reset_pkg;
   localparam logic [33:0] PmpAddrRst[16] = '{
     34'h00000000, // rgn 0
     34'h00000000, // rgn 1
-    34'h000083fc, // rgn 2  [ROM: base=0x0000_8000 size=0x800 (2KiB)]
-    34'h00000000, // rgn 3
-    34'h00000000, // rgn 4
+    34'h00003ffc, // rgn 2  [ROM: base=0x0000_0000 size=0x8000 (32KiB)] SafeRoot ROM @0x0 (was stock-OT 0x8000)
+    34'h10000ffc, // rgn 3  [SRAM: base=0x1000_0000 size=0x2000 (8KiB)] SafeRoot RAM whitelist
+    34'h2003fffc, // rgn 4  [FLASH: base=0x2000_0000 size=0x8_0000 (512KiB)] SafeRoot BL0/eflash whitelist
     34'h00000000, // rgn 5
     34'h00000000, // rgn 6
     34'h00000000, // rgn 7
