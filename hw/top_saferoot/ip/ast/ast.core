@@ -1,0 +1,30 @@
+CAPI=2:
+# Copyright lowRISC contributors (OpenTitan project).
+# Licensed under the Apache License, Version 2.0, see LICENSE for details.
+# SPDX-License-Identifier: Apache-2.0
+name: "lowrisc:systems:top_saferoot_ast:0.1"
+description: "SafeRoot AST black-box interface stub (external analog companion; not synthesized)"
+
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:ip:tlul
+      - lowrisc:prim:mubi
+      - lowrisc:ip:lc_ctrl_pkg
+      - lowrisc:ip:edn_pkg
+      - lowrisc:saferoot_ip:pinmux_pkg
+      - lowrisc:saferoot_ip:clkmgr_pkg
+      - lowrisc:saferoot_ip:rstmgr_pkg
+      # ast_pkg: depend on the CONCRETE darjeeling provider (same one top_saferoot_be
+      # already resolves the virtual `lowrisc:systems:ast_pkg` to). Depending on the bare
+      # virtual is non-deterministic and let fusesoc pick the earlgrey provider here,
+      # which dragged conflicting earlgrey top_pkg/top_racl_pkg → VER-27 duplicate-package.
+      - lowrisc:systems:top_darjeeling_ast_pkg
+    files:
+      - rtl/ast.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets:
+      - files_rtl

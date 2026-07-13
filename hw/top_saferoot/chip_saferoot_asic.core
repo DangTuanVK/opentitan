@@ -6,6 +6,7 @@ filesets:
     depend:
       - lowrisc:systems:top_saferoot:0.1
       - lowrisc:systems:top_saferoot_pkg
+      - lowrisc:systems:top_saferoot_ast:0.1
       - "!fileset_partner ? (lowrisc:prim_generic:all)"
       - "!fileset_partner ? (lowrisc:prim_generic:flash)"
     files:

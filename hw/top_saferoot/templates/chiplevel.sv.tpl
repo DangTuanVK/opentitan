@@ -660,9 +660,18 @@ module chip_${top["name"]}_${target["name"]} #(
   //////////////////////////////////
 
 <%
-  ast = [m for m in top["module"] if m["name"] == "ast"]
-  assert(len(ast) == 1)
-  ast = ast[0]
+  ast_modules = [m for m in top["module"] if m["name"] == "ast"]
+  # SafeRoot: AST is an external / black-box analog companion — there is no on-die
+  # `ast` module in the top config (same black-boxing rationale as Flash/OTP on the
+  # SAED32 educational PDK, which has no analog macro). Earlgrey's chiplevel asserts
+  # exactly one `ast` module; instead we fall back to a synthetic descriptor so the
+  # ASIC chip wrapper still renders. The AST block below instantiates a black-box
+  # `ast` (hw/top_saferoot/ip/ast) whose clock/reset groups are empty here.
+  if ast_modules:
+      assert(len(ast_modules) == 1)
+      ast = ast_modules[0]
+  else:
+      ast = {"name": "ast", "clock_connections": {}, "reset_connections": {}}
 %>\
 
   assign ast_base_pwr.main_pok = ast_pwst.main_pok;
