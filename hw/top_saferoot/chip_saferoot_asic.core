@@ -6,7 +6,9 @@ filesets:
     depend:
       - lowrisc:systems:top_saferoot:0.1
       - lowrisc:systems:top_saferoot_pkg
-      - lowrisc:systems:top_saferoot_ast:0.1
+      # ép ast_pkg về darjeeling (bản top_saferoot_be dùng; có AST_OBS_CTRL_DEFAULT).
+      # Virtual lowrisc:systems:ast_pkg phân giải non-deterministic → earlgrey (thiếu symbol).
+      - lowrisc:systems:top_darjeeling_ast_pkg
       - "!fileset_partner ? (lowrisc:prim_generic:all)"
       - "!fileset_partner ? (lowrisc:prim_generic:flash)"
     files:

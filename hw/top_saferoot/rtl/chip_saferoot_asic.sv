@@ -77,10 +77,13 @@ module chip_saferoot_asic #(
   wire scan_rst_n = 1'b1;
   wire scan_en    = 1'b0;
 
-  // MIO pad connections (directly mapped)
-  wire [7:0] mio_in;
-  wire [7:0] mio_out;
-  wire [7:0] mio_oe;
+  // MIO pad connections. top_saferoot exposes 16 MIO (mio_*_i/o [15:0]); the QFN-32
+  // product bonds only MIO[7:0] (see mapping below). MIO[15:8] are not bonded: their
+  // inputs are tied low and their outputs/oe left unconnected.
+  wire [15:0] mio_in;
+  wire [15:0] mio_out;
+  wire [15:0] mio_oe;
+  assign mio_in[15:8] = 8'b0; // unbonded MIO inputs
 
   // DIO pad connections (directly mapped)
   wire [5:0] dio_in;
