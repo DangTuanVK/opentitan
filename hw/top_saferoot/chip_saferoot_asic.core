@@ -6,9 +6,9 @@ filesets:
     depend:
       - lowrisc:systems:top_saferoot:0.1
       - lowrisc:systems:top_saferoot_pkg
-      # ép ast_pkg về darjeeling (bản top_saferoot_be dùng; có AST_OBS_CTRL_DEFAULT).
-      # Virtual lowrisc:systems:ast_pkg phân giải non-deterministic → earlgrey (thiếu symbol).
-      - lowrisc:systems:top_darjeeling_ast_pkg
+      # SafeRoot ast_pkg (virtual lowrisc:systems:ast_pkg) — pin để phân giải xác định.
+      # NumAlerts=11 khớp sensor_ctrl (tránh mismatch darjeeling=14).
+      - lowrisc:systems:top_saferoot_ast_pkg  # SafeRoot ast_pkg (NumAlerts=11)
       - "!fileset_partner ? (lowrisc:prim_generic:all)"
       - "!fileset_partner ? (lowrisc:prim_generic:flash)"
     files:

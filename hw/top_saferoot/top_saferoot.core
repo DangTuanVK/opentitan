@@ -17,6 +17,7 @@ filesets:
       - lowrisc:ip:uart:0.1
       - lowrisc:ip:rv_timer
       - lowrisc:ip:tlul
+      - lowrisc:systems:top_saferoot_ast_pkg  # SafeRoot ast_pkg (NumAlerts=11, virtual ast_pkg)
       - lowrisc:ip:spi_device
       - lowrisc:ip:i2c
       - lowrisc:ip:aes
