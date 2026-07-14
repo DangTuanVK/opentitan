@@ -28,6 +28,15 @@
             lock:  "True",
             items: [
                 {
+                    // Provision the SRAM-ifetch enable to a valid multibit value
+                    // (False = execute-from-SRAM disabled, the secure default).
+                    // Leaving it unset writes nothing to OTP, so the RTL reads X
+                    // and sram_ctrl's otp_en_sram_ifetch mubi OutputsKnown assert
+                    // floods long sims. False keeps SRAM execute off.
+                    name:  "EN_SRAM_IFETCH",
+                    value: false,
+                },
+                {
                     // Cryptolib and chip-level tests require access to the
                     // CSRNG software interfaces.
                     name:  "EN_CSRNG_SW_APP_READ",
