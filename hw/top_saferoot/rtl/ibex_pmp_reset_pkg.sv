@@ -39,7 +39,7 @@ package ibex_pmp_reset_pkg;
     34'h00000000, // rgn 0
     34'h00000000, // rgn 1
     34'h00003ffc, // rgn 2  [ROM: base=0x0000_0000 size=0x8000 (32KiB)] SafeRoot ROM @0x0 (was stock-OT 0x8000)
-    34'h10000ffc, // rgn 3  [SRAM: base=0x1000_0000 size=0x2000 (8KiB)] SafeRoot RAM whitelist
+    34'h10007ffc, // rgn 3  [SRAM: base=0x1000_0000 size=0x1_0000 (64KiB)] SafeRoot RAM whitelist — streamed ML-DSA-65 verify frame ~30KB fits 64KiB (was 8KiB→128KiB→64KiB); RW non-exec (W^X)
     34'h2003fffc, // rgn 4  [FLASH: base=0x2000_0000 size=0x8_0000 (512KiB)] SafeRoot BL0/eflash whitelist
     34'h00000000, // rgn 5
     34'h00000000, // rgn 6
