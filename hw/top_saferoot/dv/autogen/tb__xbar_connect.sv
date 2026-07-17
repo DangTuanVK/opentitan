@@ -129,9 +129,9 @@ initial begin
     xbar_clk_rst_if.wait_for_reset(.wait_posedge(1'b0));
 
     clk_rst_if_main.set_active(.drive_rst_n_val(0));
-    clk_rst_if_main.set_freq_khz(100000000 / 1000);
+    clk_rst_if_main.set_freq_khz(50000000 / 1000);
     clk_rst_if_io_div4.set_active(.drive_rst_n_val(0));
-    clk_rst_if_io_div4.set_freq_khz(24000000 / 1000);
+    clk_rst_if_io_div4.set_freq_khz(12500000 / 1000);
 
   end
 end

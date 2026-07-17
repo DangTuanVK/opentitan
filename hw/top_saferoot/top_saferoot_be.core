@@ -1,0 +1,14 @@
+CAPI=2:
+# SafeRoot FULL digital toplevel core cho flow Synopsys backend (flat/hier synth).
+# top_saferoot.core (autogen) chỉ cấp filesets, KHÔNG set toplevel → core này set toplevel.
+name: "lowrisc:systems:top_saferoot_be:0.1"
+description: "SafeRoot FULL technology-independent digital toplevel (backend synth)"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:systems:top_saferoot:0.1
+targets:
+  default:
+    filesets:
+      - files_rtl
+    toplevel: top_saferoot

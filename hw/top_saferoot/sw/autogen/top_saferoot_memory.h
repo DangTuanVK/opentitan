@@ -53,7 +53,7 @@
 /**
  * Memory size for mem memory on flash_ctrl in top saferoot.
  */
-#define TOP_SAFEROOT_FLASH_CTRL_MEM_SIZE_BYTES 0x100000
+#define TOP_SAFEROOT_FLASH_CTRL_MEM_SIZE_BYTES 0x40000
 
 
 /**

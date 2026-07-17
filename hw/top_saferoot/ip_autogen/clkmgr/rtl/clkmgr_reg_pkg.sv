@@ -86,10 +86,10 @@ package clkmgr_reg_pkg;
 
   typedef struct packed {
     struct packed {
-      logic [7:0]  q;
+      logic [8:0]  q;
     } lo;
     struct packed {
-      logic [7:0]  q;
+      logic [8:0]  q;
     } hi;
   } clkmgr_reg2hw_io_div4_meas_ctrl_shadowed_reg_t;
 
@@ -99,10 +99,10 @@ package clkmgr_reg_pkg;
 
   typedef struct packed {
     struct packed {
-      logic [9:0] q;
+      logic [8:0]  q;
     } lo;
     struct packed {
-      logic [9:0] q;
+      logic [8:0]  q;
     } hi;
   } clkmgr_reg2hw_main_meas_ctrl_shadowed_reg_t;
 
@@ -203,9 +203,9 @@ package clkmgr_reg_pkg;
     clkmgr_reg2hw_clk_hints_reg_t clk_hints; // [51:48]
     clkmgr_reg2hw_measure_ctrl_regwen_reg_t measure_ctrl_regwen; // [47:47]
     clkmgr_reg2hw_io_div4_meas_ctrl_en_reg_t io_div4_meas_ctrl_en; // [46:43]
-    clkmgr_reg2hw_io_div4_meas_ctrl_shadowed_reg_t io_div4_meas_ctrl_shadowed; // [42:27]
-    clkmgr_reg2hw_main_meas_ctrl_en_reg_t main_meas_ctrl_en; // [26:23]
-    clkmgr_reg2hw_main_meas_ctrl_shadowed_reg_t main_meas_ctrl_shadowed; // [22:3]
+    clkmgr_reg2hw_io_div4_meas_ctrl_shadowed_reg_t io_div4_meas_ctrl_shadowed; // [42:25]
+    clkmgr_reg2hw_main_meas_ctrl_en_reg_t main_meas_ctrl_en; // [24:21]
+    clkmgr_reg2hw_main_meas_ctrl_shadowed_reg_t main_meas_ctrl_shadowed; // [20:3]
     clkmgr_reg2hw_fatal_err_code_reg_t fatal_err_code; // [2:0]
   } clkmgr_reg2hw_t;
 
@@ -278,7 +278,7 @@ package clkmgr_reg_pkg;
     4'b 0001, // index[ 8] CLKMGR_CLK_HINTS_STATUS
     4'b 0001, // index[ 9] CLKMGR_MEASURE_CTRL_REGWEN
     4'b 0001, // index[10] CLKMGR_IO_DIV4_MEAS_CTRL_EN
-    4'b 0011, // index[11] CLKMGR_IO_DIV4_MEAS_CTRL_SHADOWED
+    4'b 0111, // index[11] CLKMGR_IO_DIV4_MEAS_CTRL_SHADOWED
     4'b 0001, // index[12] CLKMGR_MAIN_MEAS_CTRL_EN
     4'b 0111, // index[13] CLKMGR_MAIN_MEAS_CTRL_SHADOWED
     4'b 0001, // index[14] CLKMGR_RECOV_ERR_CODE

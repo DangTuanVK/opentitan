@@ -12,10 +12,10 @@ class clkmgr_frequency_vseq extends clkmgr_base_vseq;
   // This is measured in aon clocks. This is cannot be too precise because of a synchronizer.
   // It takes into account cases where some clocks need multiple aon clock cycles to get
   // a measurement.
-  localparam int CyclesToGetMeasurements = 6;
+  localparam int CyclesToGetMeasurements = 8;
 
   // The aon cycles between measurements, to make sure the previous measurement settles.
-  localparam int CyclesBetweenMeasurements = 6;
+  localparam int CyclesBetweenMeasurements = 8;
 
   // This is measured in clkmgr clk_i clocks. It is set to cover worst case delays.
   // The clk_i frequency is randomized for IPs, but the clkmgr is hooked to io_div4, which would

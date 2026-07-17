@@ -395,8 +395,8 @@ class clkmgr_base_vseq extends cip_base_vseq #(
   // setup basic clkmgr features
   virtual task clkmgr_init();
     // Initialize input clock frequencies.
-    cfg.main_clk_rst_vif.set_freq_mhz((1.0 * 100_000_000) / 1_000_000);
-    cfg.io_clk_rst_vif.set_freq_mhz((1.0 * 96_000_000) / 1_000_000);
+    cfg.main_clk_rst_vif.set_freq_mhz((1.0 * 50_000_000) / 1_000_000);
+    cfg.io_clk_rst_vif.set_freq_mhz((1.0 * 50_000_000) / 1_000_000);
     // The real clock rate for aon is 200kHz, but that can slow testing down.
     // Increasing its frequency improves DV efficiency without compromising quality.
     cfg.aon_clk_rst_vif.set_freq_mhz((1.0 * FakeAonClkHz) / 1_000_000);

@@ -16,10 +16,10 @@ class rstmgr_base_vseq extends cip_base_vseq #(
   // Set clock frequencies per spec, except the aon is 200kHZ, which is
   // too slow and could slow testing down for no good reason.
   localparam int AON_FREQ_MHZ = 3;
-  localparam int IO_FREQ_MHZ = 96;
-  localparam int IO_DIV2_FREQ_MHZ = 48;
-  localparam int IO_DIV4_FREQ_MHZ = 24;
-  localparam int MAIN_FREQ_MHZ = 100;
+  localparam int IO_FREQ_MHZ = 50;
+  localparam int IO_DIV2_FREQ_MHZ = 25;
+  localparam int IO_DIV4_FREQ_MHZ = 12;
+  localparam int MAIN_FREQ_MHZ = 50;
 
   // POR needs to be stable not less than 32 clock cycles, plus some extra, before it
   // propagates to the rest of the logic.

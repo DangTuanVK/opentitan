@@ -337,7 +337,7 @@ package top_saferoot_pkg;
   /**
    * Memory size for mem memory on flash_ctrl in top saferoot.
    */
-  parameter int unsigned TOP_SAFEROOT_FLASH_CTRL_MEM_SIZE_BYTES = 32'h100000;
+  parameter int unsigned TOP_SAFEROOT_FLASH_CTRL_MEM_SIZE_BYTES = 32'h40000;
 
 
   // Enumeration of alert modules

@@ -678,7 +678,7 @@
           config: {
             type: "flash",
             banks: 2,
-            pages_per_bank: 256,
+            pages_per_bank: 64,
             program_resolution: 8,
           }
         }

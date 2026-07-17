@@ -38,11 +38,11 @@ package clkmgr_env_pkg;
   typedef mubi4_t [NUM_TRANS-1:0] mubi_hintables_t;
   parameter mubi_hintables_t IdleAllBusy = {NUM_TRANS{prim_mubi_pkg::MuBi4False}};
 
-  parameter int MainClkHz = 100_000_000;
-  parameter int IoClkHz = 96_000_000;
+  parameter int MainClkHz = 50_000_000;
+  parameter int IoClkHz = 50_000_000;
   parameter int AonClkHz = 200_000;
-  parameter int IoDiv2ClkHz = 48_000_000;
-  parameter int IoDiv4ClkHz = 24_000_000;
+  parameter int IoDiv2ClkHz = 25_000_000;
+  parameter int IoDiv4ClkHz = 12_500_000;
   parameter int FakeAonClkHz = 7_000_000;
 
   // alerts
@@ -117,7 +117,7 @@ package clkmgr_env_pkg;
 
   // Take into account if multiple aon clock cycles are needed for a measurement.
   parameter int ExpectedCounts[ClkMesrSize] = {
-    ClkInHz[ClkMesrIoDiv4] / AonClkHz - 1,
+    (ClkInHz[ClkMesrIoDiv4] / AonClkHz) * 3 - 1,
     ClkInHz[ClkMesrMain] / AonClkHz - 1
   };
 

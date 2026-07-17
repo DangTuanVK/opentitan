@@ -457,7 +457,7 @@ pub const SRAM_CTRL_RAM_SIZE_BYTES: usize = 0x20000;
 pub const FLASH_CTRL_MEM_BASE_ADDR: usize = 0x20000000;
 
 /// Memory size for mem memory on flash_ctrl in top saferoot.
-pub const FLASH_CTRL_MEM_SIZE_BYTES: usize = 0x100000;
+pub const FLASH_CTRL_MEM_SIZE_BYTES: usize = 0x40000;
 
 /// PLIC Interrupt Source Peripheral.
 ///

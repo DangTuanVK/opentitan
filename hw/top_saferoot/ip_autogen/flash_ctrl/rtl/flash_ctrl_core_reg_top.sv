@@ -239,8 +239,8 @@ module flash_ctrl_core_reg_top (
   logic [11:0] control_num_qs;
   logic [11:0] control_num_wd;
   logic addr_we;
-  logic [19:0] addr_qs;
-  logic [19:0] addr_wd;
+  logic [17:0] addr_qs;
+  logic [17:0] addr_wd;
   logic prog_type_en_we;
   logic prog_type_en_normal_qs;
   logic prog_type_en_normal_wd;
@@ -394,45 +394,45 @@ module flash_ctrl_core_reg_top (
   logic [3:0] mp_region_cfg_7_he_en_7_qs;
   logic [3:0] mp_region_cfg_7_he_en_7_wd;
   logic mp_region_0_we;
-  logic [8:0] mp_region_0_base_0_qs;
-  logic [8:0] mp_region_0_base_0_wd;
-  logic [9:0] mp_region_0_size_0_qs;
-  logic [9:0] mp_region_0_size_0_wd;
+  logic [6:0] mp_region_0_base_0_qs;
+  logic [6:0] mp_region_0_base_0_wd;
+  logic [7:0] mp_region_0_size_0_qs;
+  logic [7:0] mp_region_0_size_0_wd;
   logic mp_region_1_we;
-  logic [8:0] mp_region_1_base_1_qs;
-  logic [8:0] mp_region_1_base_1_wd;
-  logic [9:0] mp_region_1_size_1_qs;
-  logic [9:0] mp_region_1_size_1_wd;
+  logic [6:0] mp_region_1_base_1_qs;
+  logic [6:0] mp_region_1_base_1_wd;
+  logic [7:0] mp_region_1_size_1_qs;
+  logic [7:0] mp_region_1_size_1_wd;
   logic mp_region_2_we;
-  logic [8:0] mp_region_2_base_2_qs;
-  logic [8:0] mp_region_2_base_2_wd;
-  logic [9:0] mp_region_2_size_2_qs;
-  logic [9:0] mp_region_2_size_2_wd;
+  logic [6:0] mp_region_2_base_2_qs;
+  logic [6:0] mp_region_2_base_2_wd;
+  logic [7:0] mp_region_2_size_2_qs;
+  logic [7:0] mp_region_2_size_2_wd;
   logic mp_region_3_we;
-  logic [8:0] mp_region_3_base_3_qs;
-  logic [8:0] mp_region_3_base_3_wd;
-  logic [9:0] mp_region_3_size_3_qs;
-  logic [9:0] mp_region_3_size_3_wd;
+  logic [6:0] mp_region_3_base_3_qs;
+  logic [6:0] mp_region_3_base_3_wd;
+  logic [7:0] mp_region_3_size_3_qs;
+  logic [7:0] mp_region_3_size_3_wd;
   logic mp_region_4_we;
-  logic [8:0] mp_region_4_base_4_qs;
-  logic [8:0] mp_region_4_base_4_wd;
-  logic [9:0] mp_region_4_size_4_qs;
-  logic [9:0] mp_region_4_size_4_wd;
+  logic [6:0] mp_region_4_base_4_qs;
+  logic [6:0] mp_region_4_base_4_wd;
+  logic [7:0] mp_region_4_size_4_qs;
+  logic [7:0] mp_region_4_size_4_wd;
   logic mp_region_5_we;
-  logic [8:0] mp_region_5_base_5_qs;
-  logic [8:0] mp_region_5_base_5_wd;
-  logic [9:0] mp_region_5_size_5_qs;
-  logic [9:0] mp_region_5_size_5_wd;
+  logic [6:0] mp_region_5_base_5_qs;
+  logic [6:0] mp_region_5_base_5_wd;
+  logic [7:0] mp_region_5_size_5_qs;
+  logic [7:0] mp_region_5_size_5_wd;
   logic mp_region_6_we;
-  logic [8:0] mp_region_6_base_6_qs;
-  logic [8:0] mp_region_6_base_6_wd;
-  logic [9:0] mp_region_6_size_6_qs;
-  logic [9:0] mp_region_6_size_6_wd;
+  logic [6:0] mp_region_6_base_6_qs;
+  logic [6:0] mp_region_6_base_6_wd;
+  logic [7:0] mp_region_6_size_6_qs;
+  logic [7:0] mp_region_6_size_6_wd;
   logic mp_region_7_we;
-  logic [8:0] mp_region_7_base_7_qs;
-  logic [8:0] mp_region_7_base_7_wd;
-  logic [9:0] mp_region_7_size_7_qs;
-  logic [9:0] mp_region_7_size_7_wd;
+  logic [6:0] mp_region_7_base_7_qs;
+  logic [6:0] mp_region_7_base_7_wd;
+  logic [7:0] mp_region_7_size_7_qs;
+  logic [7:0] mp_region_7_size_7_wd;
   logic default_region_we;
   logic [3:0] default_region_rd_en_qs;
   logic [3:0] default_region_rd_en_wd;
@@ -986,14 +986,14 @@ module flash_ctrl_core_reg_top (
   logic fault_status_spurious_ack_qs;
   logic fault_status_arb_err_qs;
   logic fault_status_host_gnt_err_qs;
-  logic [19:0] err_addr_qs;
+  logic [17:0] err_addr_qs;
   logic ecc_single_err_cnt_we;
   logic [7:0] ecc_single_err_cnt_ecc_single_err_cnt_0_qs;
   logic [7:0] ecc_single_err_cnt_ecc_single_err_cnt_0_wd;
   logic [7:0] ecc_single_err_cnt_ecc_single_err_cnt_1_qs;
   logic [7:0] ecc_single_err_cnt_ecc_single_err_cnt_1_wd;
-  logic [19:0] ecc_single_err_addr_0_qs;
-  logic [19:0] ecc_single_err_addr_1_qs;
+  logic [17:0] ecc_single_err_addr_0_qs;
+  logic [17:0] ecc_single_err_addr_1_qs;
   logic phy_alert_cfg_we;
   logic phy_alert_cfg_alert_ack_qs;
   logic phy_alert_cfg_alert_ack_wd;
@@ -1831,9 +1831,9 @@ module flash_ctrl_core_reg_top (
   logic addr_gated_we;
   assign addr_gated_we = addr_we & ctrl_regwen_qs;
   prim_subreg #(
-    .DW      (20),
+    .DW      (18),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (20'h0),
+    .RESVAL  (18'h0),
     .Mubi    (1'b0)
   ) u_addr (
     .clk_i   (clk_i),
@@ -3741,11 +3741,11 @@ module flash_ctrl_core_reg_top (
   // Create REGWEN-gated WE signal
   logic mp_region_0_gated_we;
   assign mp_region_0_gated_we = mp_region_0_we & region_cfg_regwen_0_qs;
-  //   F[base_0]: 8:0
+  //   F[base_0]: 6:0
   prim_subreg #(
-    .DW      (9),
+    .DW      (7),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (9'h0),
+    .RESVAL  (7'h0),
     .Mubi    (1'b0)
   ) u_mp_region_0_base_0 (
     .clk_i   (clk_i),
@@ -3768,11 +3768,11 @@ module flash_ctrl_core_reg_top (
     .qs     (mp_region_0_base_0_qs)
   );
 
-  //   F[size_0]: 18:9
+  //   F[size_0]: 14:7
   prim_subreg #(
-    .DW      (10),
+    .DW      (8),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (10'h0),
+    .RESVAL  (8'h0),
     .Mubi    (1'b0)
   ) u_mp_region_0_size_0 (
     .clk_i   (clk_i),
@@ -3801,11 +3801,11 @@ module flash_ctrl_core_reg_top (
   // Create REGWEN-gated WE signal
   logic mp_region_1_gated_we;
   assign mp_region_1_gated_we = mp_region_1_we & region_cfg_regwen_1_qs;
-  //   F[base_1]: 8:0
+  //   F[base_1]: 6:0
   prim_subreg #(
-    .DW      (9),
+    .DW      (7),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (9'h0),
+    .RESVAL  (7'h0),
     .Mubi    (1'b0)
   ) u_mp_region_1_base_1 (
     .clk_i   (clk_i),
@@ -3828,11 +3828,11 @@ module flash_ctrl_core_reg_top (
     .qs     (mp_region_1_base_1_qs)
   );
 
-  //   F[size_1]: 18:9
+  //   F[size_1]: 14:7
   prim_subreg #(
-    .DW      (10),
+    .DW      (8),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (10'h0),
+    .RESVAL  (8'h0),
     .Mubi    (1'b0)
   ) u_mp_region_1_size_1 (
     .clk_i   (clk_i),
@@ -3861,11 +3861,11 @@ module flash_ctrl_core_reg_top (
   // Create REGWEN-gated WE signal
   logic mp_region_2_gated_we;
   assign mp_region_2_gated_we = mp_region_2_we & region_cfg_regwen_2_qs;
-  //   F[base_2]: 8:0
+  //   F[base_2]: 6:0
   prim_subreg #(
-    .DW      (9),
+    .DW      (7),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (9'h0),
+    .RESVAL  (7'h0),
     .Mubi    (1'b0)
   ) u_mp_region_2_base_2 (
     .clk_i   (clk_i),
@@ -3888,11 +3888,11 @@ module flash_ctrl_core_reg_top (
     .qs     (mp_region_2_base_2_qs)
   );
 
-  //   F[size_2]: 18:9
+  //   F[size_2]: 14:7
   prim_subreg #(
-    .DW      (10),
+    .DW      (8),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (10'h0),
+    .RESVAL  (8'h0),
     .Mubi    (1'b0)
   ) u_mp_region_2_size_2 (
     .clk_i   (clk_i),
@@ -3921,11 +3921,11 @@ module flash_ctrl_core_reg_top (
   // Create REGWEN-gated WE signal
   logic mp_region_3_gated_we;
   assign mp_region_3_gated_we = mp_region_3_we & region_cfg_regwen_3_qs;
-  //   F[base_3]: 8:0
+  //   F[base_3]: 6:0
   prim_subreg #(
-    .DW      (9),
+    .DW      (7),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (9'h0),
+    .RESVAL  (7'h0),
     .Mubi    (1'b0)
   ) u_mp_region_3_base_3 (
     .clk_i   (clk_i),
@@ -3948,11 +3948,11 @@ module flash_ctrl_core_reg_top (
     .qs     (mp_region_3_base_3_qs)
   );
 
-  //   F[size_3]: 18:9
+  //   F[size_3]: 14:7
   prim_subreg #(
-    .DW      (10),
+    .DW      (8),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (10'h0),
+    .RESVAL  (8'h0),
     .Mubi    (1'b0)
   ) u_mp_region_3_size_3 (
     .clk_i   (clk_i),
@@ -3981,11 +3981,11 @@ module flash_ctrl_core_reg_top (
   // Create REGWEN-gated WE signal
   logic mp_region_4_gated_we;
   assign mp_region_4_gated_we = mp_region_4_we & region_cfg_regwen_4_qs;
-  //   F[base_4]: 8:0
+  //   F[base_4]: 6:0
   prim_subreg #(
-    .DW      (9),
+    .DW      (7),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (9'h0),
+    .RESVAL  (7'h0),
     .Mubi    (1'b0)
   ) u_mp_region_4_base_4 (
     .clk_i   (clk_i),
@@ -4008,11 +4008,11 @@ module flash_ctrl_core_reg_top (
     .qs     (mp_region_4_base_4_qs)
   );
 
-  //   F[size_4]: 18:9
+  //   F[size_4]: 14:7
   prim_subreg #(
-    .DW      (10),
+    .DW      (8),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (10'h0),
+    .RESVAL  (8'h0),
     .Mubi    (1'b0)
   ) u_mp_region_4_size_4 (
     .clk_i   (clk_i),
@@ -4041,11 +4041,11 @@ module flash_ctrl_core_reg_top (
   // Create REGWEN-gated WE signal
   logic mp_region_5_gated_we;
   assign mp_region_5_gated_we = mp_region_5_we & region_cfg_regwen_5_qs;
-  //   F[base_5]: 8:0
+  //   F[base_5]: 6:0
   prim_subreg #(
-    .DW      (9),
+    .DW      (7),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (9'h0),
+    .RESVAL  (7'h0),
     .Mubi    (1'b0)
   ) u_mp_region_5_base_5 (
     .clk_i   (clk_i),
@@ -4068,11 +4068,11 @@ module flash_ctrl_core_reg_top (
     .qs     (mp_region_5_base_5_qs)
   );
 
-  //   F[size_5]: 18:9
+  //   F[size_5]: 14:7
   prim_subreg #(
-    .DW      (10),
+    .DW      (8),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (10'h0),
+    .RESVAL  (8'h0),
     .Mubi    (1'b0)
   ) u_mp_region_5_size_5 (
     .clk_i   (clk_i),
@@ -4101,11 +4101,11 @@ module flash_ctrl_core_reg_top (
   // Create REGWEN-gated WE signal
   logic mp_region_6_gated_we;
   assign mp_region_6_gated_we = mp_region_6_we & region_cfg_regwen_6_qs;
-  //   F[base_6]: 8:0
+  //   F[base_6]: 6:0
   prim_subreg #(
-    .DW      (9),
+    .DW      (7),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (9'h0),
+    .RESVAL  (7'h0),
     .Mubi    (1'b0)
   ) u_mp_region_6_base_6 (
     .clk_i   (clk_i),
@@ -4128,11 +4128,11 @@ module flash_ctrl_core_reg_top (
     .qs     (mp_region_6_base_6_qs)
   );
 
-  //   F[size_6]: 18:9
+  //   F[size_6]: 14:7
   prim_subreg #(
-    .DW      (10),
+    .DW      (8),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (10'h0),
+    .RESVAL  (8'h0),
     .Mubi    (1'b0)
   ) u_mp_region_6_size_6 (
     .clk_i   (clk_i),
@@ -4161,11 +4161,11 @@ module flash_ctrl_core_reg_top (
   // Create REGWEN-gated WE signal
   logic mp_region_7_gated_we;
   assign mp_region_7_gated_we = mp_region_7_we & region_cfg_regwen_7_qs;
-  //   F[base_7]: 8:0
+  //   F[base_7]: 6:0
   prim_subreg #(
-    .DW      (9),
+    .DW      (7),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (9'h0),
+    .RESVAL  (7'h0),
     .Mubi    (1'b0)
   ) u_mp_region_7_base_7 (
     .clk_i   (clk_i),
@@ -4188,11 +4188,11 @@ module flash_ctrl_core_reg_top (
     .qs     (mp_region_7_base_7_qs)
   );
 
-  //   F[size_7]: 18:9
+  //   F[size_7]: 14:7
   prim_subreg #(
-    .DW      (10),
+    .DW      (8),
     .SwAccess(prim_subreg_pkg::SwAccessRW),
-    .RESVAL  (10'h0),
+    .RESVAL  (8'h0),
     .Mubi    (1'b0)
   ) u_mp_region_7_size_7 (
     .clk_i   (clk_i),
@@ -11393,9 +11393,9 @@ module flash_ctrl_core_reg_top (
 
   // R[err_addr]: V(False)
   prim_subreg #(
-    .DW      (20),
+    .DW      (18),
     .SwAccess(prim_subreg_pkg::SwAccessRO),
-    .RESVAL  (20'h0),
+    .RESVAL  (18'h0),
     .Mubi    (1'b0)
   ) u_err_addr (
     .clk_i   (clk_i),
@@ -11479,9 +11479,9 @@ module flash_ctrl_core_reg_top (
   // Subregister 0 of Multireg ecc_single_err_addr
   // R[ecc_single_err_addr_0]: V(False)
   prim_subreg #(
-    .DW      (20),
+    .DW      (18),
     .SwAccess(prim_subreg_pkg::SwAccessRO),
-    .RESVAL  (20'h0),
+    .RESVAL  (18'h0),
     .Mubi    (1'b0)
   ) u_ecc_single_err_addr_0 (
     .clk_i   (clk_i),
@@ -11508,9 +11508,9 @@ module flash_ctrl_core_reg_top (
   // Subregister 1 of Multireg ecc_single_err_addr
   // R[ecc_single_err_addr_1]: V(False)
   prim_subreg #(
-    .DW      (20),
+    .DW      (18),
     .SwAccess(prim_subreg_pkg::SwAccessRO),
-    .RESVAL  (20'h0),
+    .RESVAL  (18'h0),
     .Mubi    (1'b0)
   ) u_ecc_single_err_addr_1 (
     .clk_i   (clk_i),
@@ -12115,7 +12115,7 @@ module flash_ctrl_core_reg_top (
   assign control_num_wd = reg_wdata[27:16];
   assign addr_we = addr_hit[9] & reg_we & !reg_error;
 
-  assign addr_wd = reg_wdata[19:0];
+  assign addr_wd = reg_wdata[17:0];
   assign prog_type_en_we = addr_hit[10] & reg_we & !reg_error;
 
   assign prog_type_en_normal_wd = reg_wdata[0];
@@ -12270,44 +12270,44 @@ module flash_ctrl_core_reg_top (
   assign mp_region_cfg_7_he_en_7_wd = reg_wdata[27:24];
   assign mp_region_0_we = addr_hit[28] & reg_we & !reg_error;
 
-  assign mp_region_0_base_0_wd = reg_wdata[8:0];
+  assign mp_region_0_base_0_wd = reg_wdata[6:0];
 
-  assign mp_region_0_size_0_wd = reg_wdata[18:9];
+  assign mp_region_0_size_0_wd = reg_wdata[14:7];
   assign mp_region_1_we = addr_hit[29] & reg_we & !reg_error;
 
-  assign mp_region_1_base_1_wd = reg_wdata[8:0];
+  assign mp_region_1_base_1_wd = reg_wdata[6:0];
 
-  assign mp_region_1_size_1_wd = reg_wdata[18:9];
+  assign mp_region_1_size_1_wd = reg_wdata[14:7];
   assign mp_region_2_we = addr_hit[30] & reg_we & !reg_error;
 
-  assign mp_region_2_base_2_wd = reg_wdata[8:0];
+  assign mp_region_2_base_2_wd = reg_wdata[6:0];
 
-  assign mp_region_2_size_2_wd = reg_wdata[18:9];
+  assign mp_region_2_size_2_wd = reg_wdata[14:7];
   assign mp_region_3_we = addr_hit[31] & reg_we & !reg_error;
 
-  assign mp_region_3_base_3_wd = reg_wdata[8:0];
+  assign mp_region_3_base_3_wd = reg_wdata[6:0];
 
-  assign mp_region_3_size_3_wd = reg_wdata[18:9];
+  assign mp_region_3_size_3_wd = reg_wdata[14:7];
   assign mp_region_4_we = addr_hit[32] & reg_we & !reg_error;
 
-  assign mp_region_4_base_4_wd = reg_wdata[8:0];
+  assign mp_region_4_base_4_wd = reg_wdata[6:0];
 
-  assign mp_region_4_size_4_wd = reg_wdata[18:9];
+  assign mp_region_4_size_4_wd = reg_wdata[14:7];
   assign mp_region_5_we = addr_hit[33] & reg_we & !reg_error;
 
-  assign mp_region_5_base_5_wd = reg_wdata[8:0];
+  assign mp_region_5_base_5_wd = reg_wdata[6:0];
 
-  assign mp_region_5_size_5_wd = reg_wdata[18:9];
+  assign mp_region_5_size_5_wd = reg_wdata[14:7];
   assign mp_region_6_we = addr_hit[34] & reg_we & !reg_error;
 
-  assign mp_region_6_base_6_wd = reg_wdata[8:0];
+  assign mp_region_6_base_6_wd = reg_wdata[6:0];
 
-  assign mp_region_6_size_6_wd = reg_wdata[18:9];
+  assign mp_region_6_size_6_wd = reg_wdata[14:7];
   assign mp_region_7_we = addr_hit[35] & reg_we & !reg_error;
 
-  assign mp_region_7_base_7_wd = reg_wdata[8:0];
+  assign mp_region_7_base_7_wd = reg_wdata[6:0];
 
-  assign mp_region_7_size_7_wd = reg_wdata[18:9];
+  assign mp_region_7_size_7_wd = reg_wdata[14:7];
   assign default_region_we = addr_hit[36] & reg_we & !reg_error;
 
   assign default_region_rd_en_wd = reg_wdata[3:0];
@@ -13032,7 +13032,7 @@ module flash_ctrl_core_reg_top (
       end
 
       addr_hit[9]: begin
-        reg_rdata_next[19:0] = addr_qs;
+        reg_rdata_next[17:0] = addr_qs;
       end
 
       addr_hit[10]: begin
@@ -13157,43 +13157,43 @@ module flash_ctrl_core_reg_top (
       end
 
       addr_hit[28]: begin
-        reg_rdata_next[8:0] = mp_region_0_base_0_qs;
-        reg_rdata_next[18:9] = mp_region_0_size_0_qs;
+        reg_rdata_next[6:0] = mp_region_0_base_0_qs;
+        reg_rdata_next[14:7] = mp_region_0_size_0_qs;
       end
 
       addr_hit[29]: begin
-        reg_rdata_next[8:0] = mp_region_1_base_1_qs;
-        reg_rdata_next[18:9] = mp_region_1_size_1_qs;
+        reg_rdata_next[6:0] = mp_region_1_base_1_qs;
+        reg_rdata_next[14:7] = mp_region_1_size_1_qs;
       end
 
       addr_hit[30]: begin
-        reg_rdata_next[8:0] = mp_region_2_base_2_qs;
-        reg_rdata_next[18:9] = mp_region_2_size_2_qs;
+        reg_rdata_next[6:0] = mp_region_2_base_2_qs;
+        reg_rdata_next[14:7] = mp_region_2_size_2_qs;
       end
 
       addr_hit[31]: begin
-        reg_rdata_next[8:0] = mp_region_3_base_3_qs;
-        reg_rdata_next[18:9] = mp_region_3_size_3_qs;
+        reg_rdata_next[6:0] = mp_region_3_base_3_qs;
+        reg_rdata_next[14:7] = mp_region_3_size_3_qs;
       end
 
       addr_hit[32]: begin
-        reg_rdata_next[8:0] = mp_region_4_base_4_qs;
-        reg_rdata_next[18:9] = mp_region_4_size_4_qs;
+        reg_rdata_next[6:0] = mp_region_4_base_4_qs;
+        reg_rdata_next[14:7] = mp_region_4_size_4_qs;
       end
 
       addr_hit[33]: begin
-        reg_rdata_next[8:0] = mp_region_5_base_5_qs;
-        reg_rdata_next[18:9] = mp_region_5_size_5_qs;
+        reg_rdata_next[6:0] = mp_region_5_base_5_qs;
+        reg_rdata_next[14:7] = mp_region_5_size_5_qs;
       end
 
       addr_hit[34]: begin
-        reg_rdata_next[8:0] = mp_region_6_base_6_qs;
-        reg_rdata_next[18:9] = mp_region_6_size_6_qs;
+        reg_rdata_next[6:0] = mp_region_6_base_6_qs;
+        reg_rdata_next[14:7] = mp_region_6_size_6_qs;
       end
 
       addr_hit[35]: begin
-        reg_rdata_next[8:0] = mp_region_7_base_7_qs;
-        reg_rdata_next[18:9] = mp_region_7_size_7_qs;
+        reg_rdata_next[6:0] = mp_region_7_base_7_qs;
+        reg_rdata_next[14:7] = mp_region_7_size_7_qs;
       end
 
       addr_hit[36]: begin
@@ -13640,7 +13640,7 @@ module flash_ctrl_core_reg_top (
       end
 
       addr_hit[98]: begin
-        reg_rdata_next[19:0] = err_addr_qs;
+        reg_rdata_next[17:0] = err_addr_qs;
       end
 
       addr_hit[99]: begin
@@ -13649,11 +13649,11 @@ module flash_ctrl_core_reg_top (
       end
 
       addr_hit[100]: begin
-        reg_rdata_next[19:0] = ecc_single_err_addr_0_qs;
+        reg_rdata_next[17:0] = ecc_single_err_addr_0_qs;
       end
 
       addr_hit[101]: begin
-        reg_rdata_next[19:0] = ecc_single_err_addr_1_qs;
+        reg_rdata_next[17:0] = ecc_single_err_addr_1_qs;
       end
 
       addr_hit[102]: begin
