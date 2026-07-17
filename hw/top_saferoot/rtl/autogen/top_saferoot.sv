@@ -205,7 +205,7 @@ module top_saferoot #(
   localparam int EntropySrcEsFifoDepth = 3;
   localparam int unsigned EntropySrcDistrFifoDepth = 3;
   // local parameters for edn0
-  localparam int unsigned Edn0NumEndPoints = 7;
+  localparam int unsigned Edn0NumEndPoints = 8;
   // local parameters for lc_ctrl
   localparam int LcCtrlNumRmaAckSigs = 2;
   // local parameters for rom_ctrl
@@ -944,8 +944,8 @@ module top_saferoot #(
       // Inter-module signals
       .otbn_otp_key_o(otp_ctrl_otbn_otp_key_req),
       .otbn_otp_key_i(otp_ctrl_otbn_otp_key_rsp),
-      .edn_rnd_o(),
-      .edn_rnd_i(edn_pkg::EDN_RSP_DEFAULT),
+      .edn_rnd_o(edn0_edn_req[6]),
+      .edn_rnd_i(edn0_edn_rsp[6]),
       .edn_urnd_o(edn0_edn_req[5]),
       .edn_urnd_i(edn0_edn_rsp[5]),
       .idle_o(clkmgr_aon_idle[3]),
@@ -1922,8 +1922,8 @@ module top_saferoot #(
       .pwrmgr_cpu_en_i(pwrmgr_aon_fetch_en),
       .pwrmgr_o(rv_core_ibex_pwrmgr),
       .nmi_wdog_i(aon_timer_aon_nmi_wdog_timer_bark),
-      .edn_o(edn0_edn_req[6]),
-      .edn_i(edn0_edn_rsp[6]),
+      .edn_o(edn0_edn_req[7]),
+      .edn_i(edn0_edn_rsp[7]),
       .icache_otp_key_o(otp_ctrl_sram_otp_key_req[1]),
       .icache_otp_key_i(otp_ctrl_sram_otp_key_rsp[1]),
       .fpga_info_i(fpga_info_i),

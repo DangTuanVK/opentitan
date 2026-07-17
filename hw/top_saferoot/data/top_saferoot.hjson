@@ -255,8 +255,10 @@
         hart: "0x40005000",
       },
       param_decl: {
-        // SafeRoot: fewer endpoints since we have fewer consumers
-        NumEndPoints: "7",
+        // SafeRoot: fewer endpoints since we have fewer consumers.
+        // 8 = keymgr, otp_ctrl, kmac, alert_handler, aes, otbn.edn_urnd,
+        //     otbn.edn_rnd, rv_core_ibex  (edn.sv default/max NumEndPoints = 8).
+        NumEndPoints: "8",
       },
     },
     // SafeRoot: OTBN kept but optional — can be removed for area-constrained variants
@@ -841,9 +843,13 @@
 
       // EDN entropy distribution
       // SafeRoot: all consumers on single edn0
+      // otbn.edn_rnd MUST be here: without it topgen emits `.edn_rnd_o()` dangling and
+      // `.edn_rnd_i(EDN_RSP_DEFAULT)` (='0, never acks), so ANY OTBN program reading the
+      // RND WSR (p256_generate_k -> p256_random_scalar) hangs the core forever. It was
+      // dropped when Earl Grey's edn1 was removed. See docs/lab-journal 2026-07-17.
       'edn0.edn'                   : ['keymgr.edn', 'otp_ctrl.edn', 'kmac.entropy',
                                       'alert_handler.edn', 'aes.edn', 'otbn.edn_urnd',
-                                      'rv_core_ibex.edn'],
+                                      'otbn.edn_rnd', 'rv_core_ibex.edn'],
 
       // OTBN OTP scramble key
       'otp_ctrl.otbn_otp_key'      : ['otbn.otbn_otp_key'],

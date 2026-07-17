@@ -1413,7 +1413,7 @@
       }
       param_decl:
       {
-        NumEndPoints: "7"
+        NumEndPoints: "8"
       }
       clock_connections:
       {
@@ -1426,7 +1426,7 @@
           name: NumEndPoints
           desc: Number of endpoints
           type: int unsigned
-          default: "7"
+          default: "8"
           local: "true"
           expose: "true"
           name_top: Edn0NumEndPoints
@@ -1618,7 +1618,9 @@
           act: req
           width: 1
           inst_name: otbn
-          index: -1
+          default: ""
+          top_signame: edn0_edn
+          index: 6
         }
         {
           name: edn_urnd
@@ -7083,7 +7085,7 @@
           inst_name: rv_core_ibex
           default: ""
           top_signame: edn0_edn
-          index: 6
+          index: 7
         }
         {
           name: icache_otp_key
@@ -7347,6 +7349,7 @@
         alert_handler.edn
         aes.edn
         otbn.edn_urnd
+        otbn.edn_rnd
         rv_core_ibex.edn
       ]
       otp_ctrl.otbn_otp_key:
@@ -12667,7 +12670,9 @@
         act: req
         width: 1
         inst_name: otbn
-        index: -1
+        default: ""
+        top_signame: edn0_edn
+        index: 6
       }
       {
         name: edn_urnd
@@ -16156,7 +16161,7 @@
         inst_name: rv_core_ibex
         default: ""
         top_signame: edn0_edn
-        index: 6
+        index: 7
       }
       {
         name: icache_otp_key
