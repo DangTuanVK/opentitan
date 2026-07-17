@@ -66,8 +66,8 @@ module chip_saferoot_asic #(
   // ================================================================
 
   // Clocks
-  wire clk_main;   // 100 MHz (from PLL or crystal)
-  wire clk_io;     // 96 MHz (derived)
+  wire clk_main;   // 50 MHz (XIN direct — no PLL needed at 50 MHz)
+  wire clk_io;     // 50 MHz (= clk_main; io_div2 25 MHz, io_div4 12.5 MHz)
   wire clk_aon;    // 200 kHz (internal RC oscillator)
 
   // Resets
@@ -94,9 +94,11 @@ module chip_saferoot_asic #(
   // Clock Generation (simplified -- no AST)
   // ================================================================
   // In a real ASIC, this would be:
-  //   - XIN/XOUT -> PLL -> clk_main (100 MHz)
-  //   - Internal divider -> clk_io (96 MHz)
-  //   - Internal RC oscillator -> clk_aon (200 kHz, always-on)
+  //   - XIN (50 MHz XO) -> clk_main directly (no PLL required at 50 MHz)
+  //   - clk_io = clk_main (50 MHz); clkmgr derives io_div2 25 MHz, io_div4 12.5 MHz
+  //   - Internal RC oscillator -> clk_aon (200 kHz, always-on)  <-- TODO: real RC;
+  //     tying it to XIN below makes clk_aon 50 MHz in sim (250x too fast for the
+  //     watchdog timebase). See docs/lab-journal 2026-07-17_clock-watchdog-timebase-gaps.
   //
   // For simulation/FPGA, connect clk_main directly to XIN.
   assign clk_main = XIN;

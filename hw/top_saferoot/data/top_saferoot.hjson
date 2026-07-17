@@ -36,16 +36,16 @@
 
     // Clock sources — no USB clock for SafeRoot
     srcs: [
-      { name: "main", aon: "no",  freq: "100000000" },
-      { name: "io",   aon: "no",  freq: "96000000" },
+      { name: "main", aon: "no",  freq: "50000000" },
+      { name: "io",   aon: "no",  freq: "50000000" },
       // SafeRoot: USB clock removed — no USB peripheral
       { name: "aon",  aon: "yes", freq: "200000", ref: true}
     ],
 
     // Derived clock sources from io
     derived_srcs: [
-      { name: "io_div2", aon: "no", div: 2, src: "io", freq: "48000000" },
-      { name: "io_div4", aon: "no", div: 4, src: "io", freq: "24000000" }
+      { name: "io_div2", aon: "no", div: 2, src: "io", freq: "25000000" },
+      { name: "io_div4", aon: "no", div: 4, src: "io", freq: "12500000" }
     ],
 
     // Clock groups

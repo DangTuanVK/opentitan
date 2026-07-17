@@ -34,13 +34,13 @@
       {
         name: main
         aon: no
-        freq: "100000000"
+        freq: "50000000"
         ref: false
       }
       {
         name: io
         aon: no
-        freq: "96000000"
+        freq: "50000000"
         ref: false
       }
       {
@@ -55,7 +55,7 @@
       {
         name: io_div2
         aon: no
-        freq: "48000000"
+        freq: "25000000"
         ref: false
         div: "2"
         src: io
@@ -63,7 +63,7 @@
       {
         name: io_div4
         aon: no
-        freq: "24000000"
+        freq: "12500000"
         ref: false
         div: "4"
         src: io
