@@ -100,10 +100,44 @@ module chip_saferoot_asic #(
   //     tying it to XIN below makes clk_aon 50 MHz in sim (250x too fast for the
   //     watchdog timebase). See docs/lab-journal 2026-07-17_clock-watchdog-timebase-gaps.
   //
-  // For simulation/FPGA, connect clk_main directly to XIN.
+  // clk_main / clk_io: XIN is already the target 50 MHz, so no PLL is required and no
+  // divider belongs here. io_div2 (25 MHz) and io_div4 (12.5 MHz) are NOT derived at this
+  // level -- clkmgr already generates them internally with real prim_clock_div instances
+  // (Divisor 2 and 4), so tying clk_io to XIN gives the correct 25/12.5 MHz downstream.
   assign clk_main = XIN;
-  assign clk_io   = XIN;  // TODO: PLL or divider in ASIC
-  assign clk_aon  = XIN;  // TODO: RC oscillator in ASIC
+  assign clk_io   = XIN;
+
+  // clk_aon: was tied to XIN, which made the always-on domain run at 50 MHz -- 250x too
+  // fast. That is what made every watchdog/AON result a LOGIC result only: T1-T7 proved
+  // the state machine, never a real timeout (journal 2026-07-17 gap #3, and plan 2.2
+  // depends on this being fixed).
+  //
+  // In the ASIC this is a standalone RC oscillator: always-on, independent of XIN, and it
+  // must keep running when XIN is stopped. Modelled here for simulation/FPGA as a divider
+  // off XIN, which gives the right FREQUENCY for timebase work but deliberately not the
+  // independence -- a real low-power/clock-stop witness needs the RC model, not this.
+  localparam int unsigned AonDivHalf = 125;   // 50 MHz / (2*125) = 200 kHz
+  logic [7:0] aon_cnt_q;
+  logic       aon_clk_q;
+`ifndef SYNTHESIS
+  initial begin
+    aon_cnt_q = '0;
+    aon_clk_q = 1'b0;
+  end
+`endif
+  // Free-running: no reset dependency, because the always-on domain has to be ticking
+  // before POR releases (pwrmgr's slow FSM is clocked by it). Plain `always`, not
+  // `always_ff`: this is a behavioural oscillator model and always_ff forbids the
+  // initial block above from writing the same variables.
+  always @(posedge XIN) begin
+    if (aon_cnt_q == AonDivHalf[7:0] - 8'd1) begin
+      aon_cnt_q <= '0;
+      aon_clk_q <= ~aon_clk_q;
+    end else begin
+      aon_cnt_q <= aon_cnt_q + 8'd1;
+    end
+  end
+  assign clk_aon = aon_clk_q;
 
   // Power-on reset from external POR circuit
   // In ASIC: voltage detector generates POR
