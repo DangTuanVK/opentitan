@@ -1,0 +1,14 @@
+CAPI=2:
+# Wrapper set toplevel + kéo ast_pkg (sensor_ctrl import ast_pkg nhưng core gốc không pull).
+name: "lowrisc:saferoot_ip:sensor_ctrl_be:0.1"
+description: "sensor_ctrl toplevel wrapper cho backend synth"
+filesets:
+  files_rtl:
+    depend:
+      - lowrisc:systems:ast_pkg
+      - lowrisc:saferoot_ip:sensor_ctrl:0.1
+targets:
+  default:
+    filesets:
+      - files_rtl
+    toplevel: sensor_ctrl
